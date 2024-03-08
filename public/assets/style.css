@@ -1,0 +1,263 @@
+body {
+	font-weight: normal;
+	margin: auto;
+	padding: 0;
+	font-family: Arial, Helvetica, Sans serif;
+	background: url(https://josetxu.com/img/fondo_blanco.png) repeat 0 0 #fff;
+}
+
+nav {
+	width: auto;
+	margin: -17px;
+}
+h1 {
+	color: rgb(0, 0, 0);
+	text-align: center;
+	padding: 0.5em;
+	margin: auto;
+	font-family: sans-serif;
+}
+
+input[id="Numero de licencia"],
+input[id="Instrucciones"] {
+	box-sizing: inherit;
+	font-size: 70px;
+}
+
+select[id="inputState"] {
+	font-size: 35px;
+
+}
+
+
+input[id="Fecha de concesión"],
+input[id="Hora de concesión"] {
+	font-size: 50px;
+}
+
+form {
+	max-width: 980px;
+	margin: auto;
+}
+form[class="row g-3"] {
+	max-width: 980px;
+	margin: auto;
+}
+
+.content {
+	width: 306.68px;
+	padding: 1em;
+	box-sizing: border-box;
+	float: left;
+	text-align: center;
+
+}
+
+.form-control{
+	color: rgb(0, 0, 0);
+	text-align: center;
+}
+
+
+fieldset {
+	padding: 2em;
+	border-color: #d4d4d4;
+	border-style: solid;
+	border-right: 1em;
+	background:rgba(240, 248, 255, 0.808);
+	height: 102%;
+	text-align: center;
+	margin: 0%;
+
+}
+
+legend {
+	color: #050505;
+	padding: 0.3em 0.6em;
+	border: 2px solid #d4d4d4;
+	background: #10D164;
+	font-size: 1.3em;
+	margin: 0%;
+	font-weight: 800;
+	border-radius: 08px;
+	margin-bottom: 10px	;
+}
+
+legend.radio {
+	border-radius: 50px;
+}
+
+.col-md-77  {
+	margin: 0%;
+	color:rgb(0, 0, 0);
+}
+
+.container ul {
+	margin-top: 1%;
+	padding-left: 0em;
+}
+
+.container ul li {
+	list-style-type: none;
+}
+
+.container ul+ul {
+	margin-bottom: 0;
+}
+
+.container ul+ul>li+li label {
+	margin-bottom: 0;
+}
+
+/*** Styling Radio & Checkbox Input Fields (start here) ***/
+
+
+label {
+	font-weight: 600;
+	color: #777777;
+	margin-bottom: 11px;
+	width: 100%;
+	float: left;
+	cursor: pointer;
+	padding: 0 0.6em;
+	box-sizing: border-box;
+	background:#e6e6e6 ;
+	transition: all 0.5s ease 0s;
+	border-radius: 10px;
+	font-weight: 800;
+
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="radio"]+label,
+input[type="checkbox"]+label {
+	line-height: 3em;
+}
+
+input[type="radio"]+label {
+	border-radius: 50px;
+}
+
+input[type="radio"]:disabled+label,
+input[type="checkbox"]:disabled+label {
+	color: #ccc !important;
+	cursor: not-allowed;
+}
+
+input[type="radio"]:checked:disabled+label:after,
+input[type="checkbox"]:checked:disabled+label:after {
+	border-color: #ccc;
+}
+
+input[type="radio"]+label:before,
+input[type="checkbox"]+label:before {
+	content: "";
+	width: 26px;
+	height: 26px;
+	float: left;
+	margin-right: 0.5em;
+	border: 2px solid #ccc;
+	background: #fff;
+	margin-top: 0.5em;
+}
+
+input[type="radio"]+label:before {
+	border-radius: 100%;
+}
+
+input[type="radio"]:checked+label,
+input[type="checkbox"]:checked+label {
+	background: #c1eec2;
+}
+
+input[type="radio"]:checked+label:after {
+	content: "";
+	width: 0;
+	height: 0;
+	border: 7px solid #0fbf12;
+	float: left;
+	margin-left: -1.85em;
+	margin-top: 1em;
+	border-radius: 100%;
+}
+
+input[type="checkbox"]:checked+label:after {
+	content: "";
+	width: 12px;
+	height: 6px;
+	border: 4px solid #0fbf12;
+	float: left;
+	margin-left: -1.95em;
+	border-right: 0;
+	border-top: 0;
+	margin-top: 1em;
+	transform: rotate(-55deg);
+}
+
+input[type="radio"]:checked+label:before,
+input[type="checkbox"]:checked+label:before {
+	border-color: #0fbf12;
+}
+
+input[type="radio"]:checked:disabled+label,
+input[type="checkbox"]:checked:disabled+label {
+	background: #ccc;
+	color: #fff !important;
+}
+
+input[type="radio"]:checked:disabled+label:before,
+input[type="checkbox"]:checked:disabled+label:before {
+	border-color: #bdbdbd;
+}
+
+/* estilo para <labely> (area de energia en el equipo) */
+
+label[for="checkbox01"],
+label[for="checkbox02"],
+label[for="checkbox03"],
+label[for="checkbox04"],
+label[for="checkbox05"],
+label[for="checkbox06"],
+label[for="checkbox07"],
+label[for="checkbox08"] {
+	font-weight: 600;
+	color: #777777;
+	margin-bottom: 11px;
+	width: 25%;
+	float: left;
+	cursor: pointer;
+	padding: 0 1.5em;
+	box-sizing: border-box;
+	background: #e6e6e6;
+	transition: all 0.5s ease 0s;
+}
+
+@media (max-width: 650px) {
+	.content {
+		width: 100%;
+	}
+}
+
+input[id="CAPTURAR"] {
+	float: right;
+	font-size: 30px;
+}
+
+a{
+	font-size: 25px;
+}
+
+div[class="col-12"] {
+	width:25%;
+	float: right;
+}
+input[id="Otros"],
+input[id="Otros2"],
+input[id="Otros3"] {
+	border-radius: 5px;
+
+}

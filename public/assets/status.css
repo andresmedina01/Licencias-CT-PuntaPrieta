@@ -1,0 +1,41 @@
+
+tr[name="proceso"]{
+    color: black;
+    text-align: center;
+    background-color: #ffc107;
+}
+
+table[name="procesos"] {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 450px;
+    color: black;
+    background-color: #ffffff;
+}
+
+td,
+th{
+    padding: 12px 15px;
+    margin: auto;
+    justify-content: center;
+    border: 2px solid #000000c3;
+    text-align: center;
+    color: black;
+}
+
+button {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
