@@ -3,12 +3,13 @@ tr[name="proceso"]{
     color: black;
     text-align: center;
     background-color: #ffc107;
+    width: 100%;
 }
 
 table[name="procesos"] {
     border-collapse: collapse;
     margin: auto;
-    font-size: 0.9em;
+    font-size: 0.75em;
     font-family: sans-serif;
     min-width: 450px;
     color: black;
@@ -25,6 +26,10 @@ th{
     color: black;
 }
 
+legend{
+text-align: left;
+font-weight: 600;
+}
 button {
     display: block;
     margin: auto;
@@ -32,7 +37,18 @@ button {
     background-color: #007bff;
     color: #fff;
     border: none;
-    font-size: 1.3rem;
+    font-size: .6rem;
+    cursor: pointer;
+}
+
+a[name="printt"] {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: .6rem;
     cursor: pointer;
 }
 

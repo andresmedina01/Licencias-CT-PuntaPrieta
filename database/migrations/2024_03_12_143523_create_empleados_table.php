@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jefes_de_turno', function (Blueprint $table) {
+        Schema::create('empleados', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre')->nullable(false);
-            $table->string('rpe')->nullable(false)->unique();
+            $table->string('rpe', 5)->nullable(false)->unique();
             $table->string('correo')->nullable()->unique();
-            $table->unsignedBigInteger('departamento_id');
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->unsignedBigInteger('departamentos_id');
+            $table->foreign('departamentos_id')->references('id')->on('departamentos');
+            $table->string('puesto', 30)->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jefes_de_turno');
+        Schema::dropIfExists('empleados');
     }
 };
