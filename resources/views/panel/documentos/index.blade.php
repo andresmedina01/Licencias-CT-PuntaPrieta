@@ -80,7 +80,7 @@
             <th>EQUIPO</th>
             <th>TRABAJO QUE SE REALIZO</th>
             <th>MEDIDAS ESPECIFICAS DE SEGURIDAD</th>
-            <th>DETALLES DE MANTENIMIENTO</th>
+            <th>INSTRUCCIONES</th>
             <th>QUIEN LIBERO</th>
             <th>ACCIONES</th>
         </tr>
@@ -135,9 +135,9 @@
                                 </ul>
                             </div>
                         </td>
-                        <td></td>
+                        <td>{{ $licencia->comentario_especifico }}</td>
                         <td>{{ $licencia->quien_libero }}</td>
-                        <td><a name="printt" href="/status/print/{{ $licencia->id }}">IMPRIMIR</a></td>
+                        <td><a name="printt" href="/documentos/print/{{ $licencia->id }}">IMPRIMIR</a></td>
                     </tr>
                 @endif
             @endforeach

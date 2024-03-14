@@ -8,10 +8,10 @@
     <title>print</title>
     <style>
         body {
-            margin-top: 30px;
+            margin-top: 20px;
             border: initial;
             margin-right: 20PX;
-            margin: 30px;
+            padding: 50px;
 
         }
 
@@ -21,7 +21,9 @@
             color: rgb(0, 0, 0);
             text-align: center;
             margin: 20px;
-            padding: 5px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         p {
@@ -30,8 +32,9 @@
             color: rgb(0, 0, 0);
             font-size: small;
             text-align: left;
-            padding: 8px;
-
+            padding: 12px 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         label {
@@ -42,6 +45,8 @@
 </head>
 
 <body>
+    <h1> LIBRO DE REGISTRO DE LICENCIAS DE LA CENTRAL TERMOELÉCTRICA PUNTA PRIETA</h1>
+
     <p> NÚMERO DE LICENCIA: <label> {{ $licencia->numero_licencia }} </label> UNIDAD: <label> {{ $licencia->unidad }}
         </label></p>
     {{-- <p> FECHA DE CONCESIÓN: <label> {{ $licencia->}} <label> HORA: <label> {{ $licencia->}} </label></p>  --}}
@@ -74,6 +79,7 @@
             </li>
         </div>
     </div>
+    <p> QUIEN LIBERO: <label> {{ $licencia->quien_libero }} </label></p>
 </body>
 
 </html>

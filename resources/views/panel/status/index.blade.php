@@ -28,8 +28,8 @@
             <th>NUMERO DE LICENCIA </th>
             <th>CENTRO DE GESTOR </th>
             <th> UNIDAD </th>
-            <th>DEPARTAMENTO</th>
             <th>QUIEN CONCEDIO</th>
+            <th>DEPARTAMENTO</th>
             <th>SE CONCEDIO A</th>
             <th>EQUIPO</th>
             <th>TRABAJO QUE SE REALIZO</th>
@@ -45,8 +45,8 @@
                     <td>{{ $licencia->numero_licencia }}</td>
                     <td>{{ $licencia->centro_gestor }}</td>
                     <td>{{ $licencia->unidad }}</td>
-                    <td>{{ $licencia->departamento->nombre }}</td>
                     <td>{{ $licencia->jefeDeTurno->nombre }}</td>
+                    <td>{{ $licencia->departamento->nombre }}</td>
                     <td>{{ $licencia->empleado->nombre }}</td>
                     <td>{{ $licencia->equipo->denominacion }}</td>
                     <td>{{ $licencia->comentario_trabajo_realizar }}</td>

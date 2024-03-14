@@ -90,8 +90,14 @@ class LicenciasController extends Controller
 
     public function showLicencia(string $id)
     {
-        $licencia = $this->licencias->obtenerLicenciasPorId($id);
-        return view('status.print', ['licencia' => $licencia]);
+        $licencia = Licencias::FindOrFail($id);
+        return view('panel.status.print', ['licencia' => $licencia]);
+    }
+
+    public function showLicense(string $id)
+    {
+        $licencia = Licencias::FindOrFail($id);
+        return view('panel.documentos.print', ['licencia' => $licencia]);
     }
 
     public function showLicences()

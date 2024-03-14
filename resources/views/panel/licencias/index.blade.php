@@ -40,10 +40,10 @@
                 <legend for="Unidad" class="form-label">UNIDAD</legend>
                 <select class="form-select" id="Unidad" name="unidad" required>
                     <option selected disabled value="">SELECCIONE...</option>
-                    <option value="U0">U0</option>
-                    <option value="U1">U1</option>
-                    <option value="U2">U2</option>
-                    <option value="U3">U3</option>
+                    <option value="0">U0</option>
+                    <option value="1">U1</option>
+                    <option value="2">U2</option>
+                    <option value="3">U3</option>
                 </select>
             </div>
             <div class="col-md-4">
