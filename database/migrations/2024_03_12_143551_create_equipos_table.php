@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable(false);
-            $table->unsignedBigInteger('departamento_id');
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->string('denominacion')->nullable(false)->unique();
+            $table->string('centro_gestor')->nullable(false);
+            $table->string('unidad')->nullable();
             $table->timestamps();
         });
     }

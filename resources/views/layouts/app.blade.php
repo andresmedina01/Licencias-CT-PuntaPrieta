@@ -14,7 +14,7 @@
             width: auto;
             height: 55px;
             background-color: #1d2538;
-            border-radius: 8px;
+            border-radius: 2px;
             font-size: 0;
         }
 
@@ -153,6 +153,45 @@
         span {
             color: #2BD6B4;
         }
+
+        /*
+        button[name="logout"] {
+            border-radius: 4px;
+            height: auto;
+            width: auto;
+            color: black;
+            background-color: #2BD6B4;
+            margin-top: 40%;
+            margin-left: 450%;
+        }
+
+        */
+
+        div[name="logout"] {
+            text-align: center;
+        }
+
+        .logout-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #72ffb6d7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10%;
+            margin-left: 220%;
+        }
+
+        .logout-button:hover {
+            background-color: #475b80;
+        }
+
+        .logout-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #475b80;
+        }
     </style>
     @include('partials.navigation')
 </head>
@@ -160,6 +199,7 @@
 <body>
     @yield('content')
     @yield('secondcontent')
+    @stack('scripts')
 </body>
 
 </html>

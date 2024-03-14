@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\auth\LoginController;
-use App\Http\Controllers\auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LicenciasController;
+use App\Http\Controllers\PrintController;
+use App\Models\Licencias;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,6 @@ Route::get('/', function () {
     return view('panel.principal');
 })->name('principal')->middleware('auth');
 
-Route::view('/registros', 'panel.registros')->name('registros');
-Route::view('/status', 'panel.status')->name('status');
-
 Route::get('/register', [RegisterController::class, 'show']);
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
@@ -35,9 +34,14 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::get('/licencias', [LicenciasController::class, 'show'])->name('licencias')->middleware('auth');
 Route::post('/licencias', [LicenciasController::class, 'store']);
 
-Route::get('/documentos', function () {
-    return view('panel.documentos.index');
-})->name('documentos')->middleware('auth');
+Route::get('/documentos', [LicenciasController::class, 'showLicences'])->name('documentos')->middleware('auth');
+
+Route::get('/status', [LicenciasController::class, 'index'])->name('status')->middleware('auth');
+Route::put('/status/{id}/update', [LicenciasController::class, 'update'])->name('status.update')->middleware('auth');
 
 Route::get('get-empleados', [LicenciasController::class, 'getEmpleados'])->name('getEmpleados');
 Route::get('get-equipos', [LicenciasController::class, 'getEquipos'])->name('getEquipos');
+
+Route::get('/status/print/{id}', [LicenciasController::class, 'showLicencia']);
+
+Route::get('/documentos/print/{id}', [LicenciasController::class, 'showLicense']);
