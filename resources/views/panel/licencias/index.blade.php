@@ -40,10 +40,10 @@
                 <legend for="Unidad" class="form-label">UNIDAD</legend>
                 <select class="form-select" id="Unidad" name="unidad" required>
                     <option selected disabled value="">SELECCIONE...</option>
-                    <option value="0">U0</option>
-                    <option value="1">U1</option>
-                    <option value="2">U2</option>
-                    <option value="3">U3</option>
+                    <option value="U0">U0</option>
+                    <option value="U1">U1</option>
+                    <option value="U2">U2</option>
+                    <option value="U3">U3</option>
                 </select>
             </div>
             <div class="col-md-4">
@@ -388,60 +388,82 @@
 @endsection
 
 @push('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#Numerolicencia').on('keypress', function(e) {
-                var input = document.getElementById("Numerolicencia");
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#Numerolicencia').on('keypress', function (e){
+        var input = document.getElementById("Numerolicencia");
 
-                if ([2, 5].includes(input.value.length) && e.which != 8) {
-                    input.value = input.value + "-";
-                }
+        if([2,5].includes(input.value.length) && e.which != 8){
+            input.value = input.value + "-";
+        }
 
-            });
+    });
 
-            $('#DepartamentoSolicitante').on('change', function() {
-                var idDepa = this.value;
-                $("#SeConcede").html('');
-                /*$("#Equipo").html('');*/
+    $('#DepartamentoSolicitante').on('change', function () {
+        var idDepa = this.value;
+        $("#SeConcede").html('');
 
-                $.ajax({
-                    url: '{{ route('getEmpleados') }}',
-                    type: "get",
-                    data: {
-                        departamento_id: idDepa,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    dataType: 'json',
-                    success: function(result) {
-                        $("#SeConcede").html(
-                            '<option selected disabled value="">SELECCIONE...</option>');
-                        $.each(result, function(key, value) {
-                            $("#SeConcede").append('<option value="' + value.id + '">' +
-                                value.nombre + '</option>');
-                        });
-                    }
+        $.ajax({
+            url: '{{route('getEmpleados')}}',
+            type: "get",
+            data: {
+                departamento_id: idDepa,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $("#SeConcede").html('<option selected disabled value="">SELECCIONE...</option>');
+                $.each(result, function (key, value) {
+                    $("#SeConcede").append('<option value="' + value.id + '">' + value.nombre + '</option>');
                 });
-                /*
-                                $.ajax({
-                                    url: '{{ route('getEquipos') }}',
-                                    type: "get",
-                                    data: {
-                                        departamento_id: idDepa,
-                                        _token: '{{ csrf_token() }}'
-                                    },
-                                    dataType: 'json',
-                                    success: function(result) {
-                                        $("#Equipo").html(
-                                            '<option selected disabled value="">SELECCIONE...</option>');
-                                        $.each(result, function(key, value) {
-                                            $("#Equipo").append('<option value="' + value.id + '">' +
-                                                value.name + '</option>');
-                                        });
-                                    }
-                                });
-                   */
-            });
+            }
         });
-    </script>
+    });
+
+    $('#Unidad').on('change', function () {
+        var unidad = this.value;
+        var centro = $('#centro_gestor option:selected').val();
+
+        $.ajax({
+            url: '{{route('getEquipos')}}',
+            type: "get",
+            data: {
+                centro_gestor: centro,
+                unidad: unidad,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $("#Equipo").html('<option selected disabled value="">SELECCIONE...</option>');
+                $.each(result, function (key, value) {
+                    $("#Equipo").append('<option value="' + value.id + '">' + value.denominacion + '</option>');
+                });
+            }
+        });
+    });
+
+    $('#centro_gestor').on('change', function() {
+        var centro = this.value;
+        var unidad = $('#Unidad option:selected').val();
+
+        $.ajax({
+            url: '{{route('getEquipos')}}',
+            type: "get",
+            data: {
+                centro_gestor: centro,
+                unidad: unidad,
+                _token: '{{csrf_token()}}'
+            },
+            dataType: 'json',
+            success: function (result) {
+                $("#Equipo").html('<option selected disabled value="">SELECCIONE...</option>');
+                $.each(result, function (key, value) {
+                    $("#Equipo").append('<option value="' + value.id + '">' + value.denominacion + '</option>');
+                });
+            }
+        });
+    });
+});
+</script>
 @endpush

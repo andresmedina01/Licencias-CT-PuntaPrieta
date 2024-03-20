@@ -67,14 +67,24 @@ class LicenciasController extends Controller
 
         return response()->json($empleados);
     }
-    /*
+    
     public function getEquipos(Request $request)
     {
-        $equipos = Equipo::where('departamento_id', $request->departamento_id)->get();
+        if(empty($request->centro_gestor)){
+            $equipos = Equipo::where('unidad', $request->unidad)->get();
+            return response()->json($equipos);
+        }
+
+        if(empty($request->unidad)){
+            $equipos = Equipo::where('centro_gestor', $request->centro_gestor)->get();
+            return response()->json($equipos);
+        }
+
+        $equipos = Equipo::where('unidad', $request->unidad)->where('centro_gestor', $request->centro_gestor)->get();
 
         return response()->json($equipos);
     }
-*/
+
     public function index()
     {
         // Obtener todas las licencias

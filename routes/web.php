@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\LicenciasController;
 use App\Http\Controllers\PrintController;
 use App\Models\Licencias;
