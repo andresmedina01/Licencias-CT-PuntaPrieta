@@ -5,8 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\LicenciasController;
-use App\Http\Controllers\PrintController;
-use App\Models\Licencias;
+use App\Http\Controllers\GraphController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +17,14 @@ use App\Models\Licencias;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('panel.principal');
 })->name('principal')->middleware('auth');
+*/
+
+Route::get('/', [GraphController::class, 'ShowGraph'])->name('principal')->middleware('auth');
+
 
 Route::get('/register', [RegisterController::class, 'show']);
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
@@ -45,3 +48,6 @@ Route::get('get-equipos', [LicenciasController::class, 'getEquipos'])->name('get
 Route::get('/status/print/{id}', [LicenciasController::class, 'showLicencia']);
 
 Route::get('/documentos/print/{id}', [LicenciasController::class, 'showLicense']);
+/*
+Route::get('/panel/principal', [GraphController::class, 'mostrarGrafico'])->name('panel.principal');
+*/

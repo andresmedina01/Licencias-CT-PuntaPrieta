@@ -9,7 +9,7 @@
     <meta name="description" content="@yield('meta-description', 'Default meta descripcion')" />
     <style>
         nav {
-            margin: auto;
+            margin: 0%;
             position: relative;
             width: auto;
             height: 55px;
@@ -174,14 +174,15 @@
         .logout-button {
             padding: 10px 20px;
             border: none;
+            width: auto;
             border-radius: 5px;
             background-color: #72ffb6d7;
             color: white;
-            font-size: 16px;
+            font-size: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 10%;
-            margin-left: 220%;
+            margin-top: 23%;
+            margin-left: 300%;
         }
 
         .logout-button:hover {
@@ -192,14 +193,21 @@
             outline: none;
             box-shadow: 0 0 0 2px #475b80;
         }
+
+        footer {
+            text-align: center;
+        }
     </style>
     @include('partials.navigation')
 </head>
 
 <body>
     @yield('content')
-    @yield('secondcontent')
     @stack('scripts')
 </body>
+<br>
+<footer>
+    &#169; 2024 CENTRAL TERMOELÉCTRICA PUNTA PRIETA
+</footer>
 
 </html>

@@ -10,8 +10,8 @@
         body {
             margin-top: 30px;
             border: initial;
-            margin-right: 20PX;
-            margin: 30px;
+            margin-right: 100PX;
+
 
         }
 
@@ -20,8 +20,9 @@
             font-size: small;
             color: rgb(0, 0, 0);
             text-align: center;
-            margin: 20px;
+            margin: 8px;
             padding: 5px;
+            margin-top: 1px;
         }
 
         p {
@@ -42,9 +43,13 @@
 </head>
 
 <body>
-    <p> NÚMERO DE LICENCIA: <label> {{ $licencia->numero_licencia }} </label> UNIDAD: <label> {{ $licencia->unidad }}
-        </label></p>
-    {{-- <p> FECHA DE CONCESIÓN: <label> {{ $licencia->}} <label> HORA: <label> {{ $licencia->}} </label></p>  --}}
+    <p> TIPO DE LICENCIA <label> {{ $licencia->tipo_licencia }} </label></p>
+    <p> NÚMERO DE LICENCIA: <label> {{ $licencia->numero_licencia }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label> UNIDAD:
+        <label>
+            {{ $licencia->unidad }}
+        </label>
+    </p>
+    <p> FECHA DE CONCESIÓN: <label> {{ $licencia->created_at }}</label> </p>
     <p>CENTRO DE GESTOR: <label> {{ $licencia->centro_gestor }} </label></p>
     <p>QUIÉN CONCEDE: <label> {{ $licencia->JefeDeTurno->nombre }} </label></p>
     <p> DEPARTAMENTO SOLICITANTE: <label> {{ $licencia->Departamento->nombre }} </label></p>
@@ -53,26 +58,29 @@
     <p>TRABAJO A REALIZAR: <label> {{ $licencia->comentario_trabajo_realizar }} </label></p>
     <p>INSTRUCCIONES ESPECIFICAS: <label> {{ $licencia->comentario_especifico }} </label>
     </p>
-    <p>ENERGIA A UTILIZAR: <label> {{ $licencia->energia_equipo }} </label></p>
-    <div class="row">
-        <div class="col">
-            <legend for="maniobrar">MANIOBRAR</legend>
-            <li>
-                <label> {{ $licencia->maniobrar }} </label>
-            </li>
-        </div>
-        <div class="col">
-            <legend for="asegurar">ASEGURAR</legend>
-            <li>
-                <label> {{ $licencia->asegurar }} </label>
-            </li>
-        </div>
-        <div class="col">
-            <legend for="bloquear">BLOQUEAR</legend>
-            <li>
-                <label> {{ $licencia->bloquear }} </label>
-            </li>
-        </div>
+    <div class="col">
+        <legend for="energia">ENERGIA EN EL EQUIPO</legend>
+        <li>
+            <label> {{ $licencia->energia_equipo }} </label>
+        </li>
+    </div>
+    <div class="col">
+        <legend for="maniobrar">MANIOBRAR</legend>
+        <li>
+            <label> {{ $licencia->maniobrar }} </label>
+        </li>
+    </div>
+    <div class="col">
+        <legend for="asegurar">ASEGURAR</legend>
+        <li>
+            <label> {{ $licencia->asegurar }} </label>
+        </li>
+    </div>
+    <div class="col">
+        <legend for="bloquear">BLOQUEAR</legend>
+        <li>
+            <label> {{ $licencia->bloquear }} </label>
+        </li>
     </div>
 </body>
 

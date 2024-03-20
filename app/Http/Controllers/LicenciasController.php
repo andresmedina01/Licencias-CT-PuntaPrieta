@@ -67,20 +67,29 @@ class LicenciasController extends Controller
 
         return response()->json($empleados);
     }
-    /*
+
+
     public function getEquipos(Request $request)
     {
-        $equipos = Equipo::where('departamento_id', $request->departamento_id)->get();
+        if (empty($request->centro_gestor)) {
+            $equipos = Equipo::where('unidad', $request->unidad)->get();
+            return response()->json($equipos);
+        }
 
+        if (empty($request->unidad)) {
+            $equipos = Equipo::where('centro_gestor', $request->centro_gestor)->get();
+            return response()->json($equipos);
+        }
+
+        $equipos = Equipo::where('unidad', $request->unidad)->where('centro_gestor', $request->centro_gestor)->get();
         return response()->json($equipos);
     }
-*/
+
+
     public function index()
     {
-        // Obtener todas las licencias
         $licencias = Licencias::all();
 
-        // Filtrar las licencias que no están liberadas
         $licenciasNoLiberadas = $licencias->filter(function ($licencia) {
             return $licencia->status !== 'LIBERADO';
         });
@@ -118,8 +127,6 @@ class LicenciasController extends Controller
 
         $licencia->status = $request->estado;
 
-        // Guarda el ID del usuario que liberó la licencia y le asigna el nombre del
-        // Jefe de turno
         $licencia->usuario_que_libero_id = Auth::id();
         $jefeDeTurno = JefeDeTurno::where('rpe', Auth::user()->rpe)->first();
         $licencia->quien_libero = $jefeDeTurno->nombre;

@@ -1022,3 +1022,10 @@ legend {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
+
+div[class=col-md-4] {
+    margin: 40px;
+    margin-left: 150px;
+    margin-right: 180px;
+    margin-bottom: 100px;
+}

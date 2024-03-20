@@ -1,15 +1,12 @@
 body {
 	font-weight: normal;
-	margin: auto;
-	padding: 0;
+	margin: 0px;
+	padding: 0%;
 	font-family: Arial, Helvetica, Sans serif;
 	background: url(https://josetxu.com/img/fondo_blanco.png) repeat 0 0 #fff;
 }
 
-nav {
-	width: auto;
-	margin: -17px;
-}
+
 h1 {
 	color: rgb(0, 0, 0);
 	text-align: center;

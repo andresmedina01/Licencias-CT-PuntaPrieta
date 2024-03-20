@@ -49,4 +49,8 @@
 
 </body>
 
+<footer>
+    &#169; 2024 CENTRAL TERMOELÉCTRICA PUNTA PRIETA
+</footer>
+
 </html>
