@@ -5,12 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>print</title>
-    <link rel="stylesheet" href="{{ asset('assets/documentsprint.css') }}" />
+    <title>LIBERAR</title>
+    <link rel="stylesheet" href="{{ asset('assets/statsliberar.css') }}" />
+
 
 </head>
 
 <body>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="contenedor">
         <img src="{{ asset('assets/generacion III.jpeg') }}" alt="genereacion cfe" class="imagen">
     </div>
@@ -20,7 +26,7 @@
     <h4> Tel: 612 123 7702 </h4>
     <h2> RESPALDO DEL LIBRO DE REGISTRO DE LICENCIAS DE LA C.T. PUNTA PRIETA</h2>
     <br>
-    <h2> <label> REPORTE DE LICENCIA </label> </h2>
+    <h2> <label>LIBERAR LICENCIA </label> </h2>
     <br>
     <p> TIPO DE LICENCIA: <label> {{ $licencia->tipo_licencia }} </label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NÚMERO
@@ -32,8 +38,10 @@
             {{ $licencia->created_at }} </label>
     </p>
     <p> QUIÉN CONCEDIO: <label> {{ $licencia->JefeDeTurno->nombre }} </label></p>
-    <p> SE CONCEDIO A: <label> {{ $licencia->empleado->nombre }} </label> &nbsp;&nbsp;&nbsp;&nbsp; DEPARTAMENTO: <label>
-            {{ $licencia->Departamento->nombre }} </label></p>
+    <p> SE CONCEDIO A: <label> {{ $licencia->empleado->nombre }} </label> &nbsp;&nbsp;&nbsp;&nbsp; DEPARTAMENTO:
+        <label>
+            {{ $licencia->Departamento->nombre }} </label>
+    </p>
     <p> EQUIPO: <label> {{ $licencia->equipo->denominacion }} </label> &nbsp;&nbsp;&nbsp;&nbsp; TRABAJO A REALIZAR:
         <label> {{ $licencia->comentario_trabajo_realizar }} </label>
     </p>
@@ -46,10 +54,26 @@
     <p> ASEGURAR: <label> {{ $licencia->asegurar }} </label> </p>
     <p> BLOQUEAR: <label> {{ $licencia->bloquear }} </label> </p>
     <br>
-    <p> QUIÉN LIBERO: <label> {{ $licencia->quien_libero }} </label> &nbsp;&nbsp;&nbsp;&nbsp; FECHA DE LIBERACIÓN:
-        <label> {{ $licencia->updated_at }} </label>
-    </p>
+    <br>
+    <br>
+    <form id="myStats" action="{{ route('status.update', $licencia->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="estado" value="LIBERADO">
+        <input type="hidden" name="usuario_id" value="{{ Auth::id() }}">
+        <button type="button" class="btn btn-warning btn-sm" onclick="confirmSubmit()">LIBERAR</button>
+    </form>
+
 </body>
+<script>
+    function confirmSubmit() {
+        if (confirm("¿Estás seguro de que deseas liberar esta licencia?")) {
+            document.getElementById("myStats").submit();
+        } else {
+
+        }
+    }
+</script>
 
 <footer>
     &#169; 2024 CENTRAL TERMOELÉCTRICA PUNTA PRIETA

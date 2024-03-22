@@ -1024,8 +1024,21 @@ legend {
 }
 
 div[class=col-md-4] {
-    margin: 40px;
-    margin-left: 150px;
-    margin-right: 180px;
-    margin-bottom: 100px;
+    width: 100px; /* Ancho del elemento */
+    height: 200px; /* Altura del elemento */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+}
+/* Ajuste del contenedor row */
+.row {
+    max-width:600px ;
+    margin-left: 15px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
+    margin-right: 15px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
+}
+
+/* Opcional: Centrar el contenido en la fila */
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

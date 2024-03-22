@@ -12,17 +12,33 @@ use App\Models\JefeDeTurno;
 use App\Models\Empleado;
 use App\Models\Equipo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class LicenciasController extends Controller
 {
+
     public function show()
     {
-        $departamentos = Departamento::all();
-        $rpeUsuario = Auth::user()->rpe;
-        $jefeDeTurno = JefeDeTurno::where('rpe', $rpeUsuario)->first();
-        $empleados = Empleado::all();
-        $equipos = Equipo::all();
-        return view('panel.licencias.index', compact('departamentos', 'empleados', 'equipos', 'jefeDeTurno'));
+        try {
+            $user = Auth::user();
+            $jefeDeTurno = JefeDeTurno::where('rpe', $user->rpe)->first();
+
+            // Verifica si $jefeDeTurno está definido
+            if (!$jefeDeTurno) {
+                // Maneja el caso en el que no se encuentra un jefe de turno
+                return redirect()->back()->with('error', 'No se encontró el jefe de turno.');
+            }
+
+            $this->authorize('view', $jefeDeTurno);
+
+            $departamentos = Departamento::all();
+            $empleados = Empleado::all();
+            $equipos = Equipo::all();
+
+            return view('panel.licencias.index', compact('departamentos', 'empleados', 'equipos', 'jefeDeTurno'));
+        } catch (AuthorizationException $e) {
+            return redirect()->back()->with('error', 'No estás autorizado para emitir licencias.');
+        }
     }
 
     public function store(Request $request)
@@ -97,6 +113,13 @@ class LicenciasController extends Controller
         return view('panel.status.index', compact('licenciasNoLiberadas'));
     }
 
+
+    public function liberarLicencia(string $id)
+    {
+        $licencia = Licencias::FindOrFail($id);
+        return view('panel.status.liberar', ['licencia' => $licencia]);
+    }
+
     public function showLicencia(string $id)
     {
         $licencia = Licencias::FindOrFail($id);
@@ -117,9 +140,19 @@ class LicenciasController extends Controller
         return view('panel.documentos.index', compact('licencias'));
     }
 
+    private function userIsJefeDeTurno()
+    {
+        $jefeDeTurno = JefeDeTurno::where('rpe', Auth::user()->rpe)->first();
+        return $jefeDeTurno !== null;
+    }
+
     public function update(Request $request, $id)
     {
         $licencia = Licencias::findOrFail($id);
+        // Validación de permisos
+        if (!$this->userIsJefeDeTurno()) {
+            return redirect()->route('principal')->with('error', 'No tienes permiso para liberar esta licencia.');
+        }
 
         $request->validate([
             'estado' => 'required|in:NO LIBERADO,LIBERADO',
@@ -133,6 +166,6 @@ class LicenciasController extends Controller
 
         $licencia->save();
 
-        return redirect()->route('status')->with('success', '¡Licencia liberada correctamente!');
+        return redirect()->route('status')->with('success', 'Licencia liberada correctamente');
     }
 }

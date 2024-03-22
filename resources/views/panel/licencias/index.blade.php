@@ -61,11 +61,27 @@
                         <option value="U3">U3</option>
                     </select>
                 </div>
+                {{--
                 <div class="col-md-4">
                     <legend for="QuienConcede" class="form-label">QUIEN CONCEDE:</legend>
                     <input type="hidden" name="jefe_de_turno_id" value="{{ $jefeDeTurno->id }}">
                     <input class="form-select" type="text" id="QuienConcede" value="{{ $jefeDeTurno->nombre }}" readonly>
                 </div>
+                --}}
+                @php
+                    $userIsJefeDeTurno = App\Models\JefeDeTurno::where('rpe', Auth::user()->rpe)->exists();
+                @endphp
+
+                @if ($userIsJefeDeTurno)
+                    <!-- Aquí va el contenido que solo pueden ver los jefes de turno -->
+                    <div class="col-md-4">
+                        <legend for="QuienConcede" class="form-label">QUIEN CONCEDE:</legend>
+                        <input type="hidden" name="jefe_de_turno_id" value="{{ $jefeDeTurno->id }}">
+                        <input class="form-select" type="text" id="QuienConcede" value="{{ $jefeDeTurno->nombre }}"
+                            readonly>
+                    </div>
+                @endif
+
                 <div class="col-md-4">
                     <legend for="SeConcede" class="form-label">SE CONCEDE A:</legend>
                     <select class="form-select" id="SeConcede" name="empleado_id" required>
@@ -385,14 +401,15 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
                 <fieldset>
-                    <div class="container-rigth">
-                        <div class="col-md-4">
-                            <input class="form-check-input" type="checkbox" value="01" id="CheckFormt">
-                            <button class="btn btn-primary" type="button" onclick="confirmSubmit()">ENVIAR</button>
-                        </div>
+                    <div class="col-md-4">
+                        <input class="form-check-input" type="checkbox" value="01" id="CheckFormt">
+                        <button class="btn btn-primary" type="button" onclick="confirmSubmit()">ENVIAR</button>
                     </div>
                 </fieldset>
+
             </form>
         </fieldset>
     @endsection

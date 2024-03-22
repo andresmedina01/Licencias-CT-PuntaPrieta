@@ -4,33 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Licencias;
 use App\Models\Departamento;
+use App\Models\JefeDeTurno;
 use Illuminate\Http\Request;
 
 class GraphController extends Controller
 {
     public function ShowGraph()
     {
-        // Verificar si la solicitud espera una respuesta de gráfica
-        if (request()->expectsJson()) {
-            // Obtener los datos necesarios para la gráfica
-            $departamentos = Departamento::pluck('nombre')->toArray();
-            $licenciasPorDepartamento = Licencias::selectRaw('departamento_id, COUNT(*) as cantidad')
-                ->groupBy('departamento_id')
-                ->pluck('cantidad')->toArray();
-
-            // Retornar los datos en formato JSON
-            return response()->json([
-                'departamentos' => $departamentos,
-                'licencias_por_departamento' => $licenciasPorDepartamento,
-            ]);
-        }
-
-        // Si la solicitud no espera una respuesta JSON, mostrar la vista panel.principal
+        // Obtener los datos para las gráficas de departamentos
         $departamentos = Departamento::pluck('nombre')->toArray();
         $licenciasPorDepartamento = Licencias::selectRaw('departamento_id, COUNT(*) as cantidad')
             ->groupBy('departamento_id')
             ->pluck('cantidad')->toArray();
 
-        return view('panel.principal', compact('departamentos', 'licenciasPorDepartamento'));
+        // Obtener los datos para las gráficas de jefes de turno
+        $jefesDeTurno = JefeDeTurno::pluck('rpe')->toArray();
+        $licenciasPorJefeDeTurno = Licencias::selectRaw('jefe_de_turno_id, COUNT(*) as cantidad')
+            ->groupBy('jefe_de_turno_id')
+            ->pluck('cantidad')->toArray();
+
+        // Devolver la vista con todos los datos
+        return view('panel.principal', compact('departamentos', 'licenciasPorDepartamento', 'jefesDeTurno', 'licenciasPorJefeDeTurno'));
     }
 }

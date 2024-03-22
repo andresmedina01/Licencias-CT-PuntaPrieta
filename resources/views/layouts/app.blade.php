@@ -176,13 +176,13 @@
             border: none;
             width: auto;
             border-radius: 5px;
-            background-color: #72ffb6d7;
+            background-color: rgba(255, 0, 0, 0.75);
             color: white;
             font-size: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             margin-top: 23%;
-            margin-left: 300%;
+            margin-left: 280%;
         }
 
         .logout-button:hover {
@@ -196,8 +196,60 @@
 
         footer {
             text-align: center;
+            text-align: center;
+            margin-bottom: 0px;
+            margin-top: 210px;
+        }
+
+        /* Estilos para el menú desplegable */
+        .dropdown-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            position: relative;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #2BD6B4;
+            /* Color de fondo al pasar el ratón */
+        }
+
+        .dropdown-menu {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            background-color: #1d2538;
+            /* Color de fondo del menú */
+            border: 1px solid #fff;
+            /* Borde del menú */
+        }
+
+        .dropdown-menu li:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li:hover>.dropdown-menu {
+            top: 0;
+            left: 100%;
         }
     </style>
+
     @include('partials.navigation')
 </head>
 

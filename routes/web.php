@@ -45,6 +45,8 @@ Route::put('/status/{id}/update', [LicenciasController::class, 'update'])->name(
 Route::get('get-empleados', [LicenciasController::class, 'getEmpleados'])->name('getEmpleados');
 Route::get('get-equipos', [LicenciasController::class, 'getEquipos'])->name('getEquipos');
 
+Route::get('/status/liberar/{id}', [LicenciasController::class, 'LiberarLicencia']);
+
 Route::get('/status/print/{id}', [LicenciasController::class, 'showLicencia']);
 
 Route::get('/documentos/print/{id}', [LicenciasController::class, 'showLicense']);

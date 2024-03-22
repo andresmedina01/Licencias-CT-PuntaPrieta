@@ -1,12 +1,11 @@
-
-tr[name="proceso"]{
+tr[name="completadas"] {
     color: black;
     text-align: center;
-    background-color: #ffc107;
+    background-color: #57f851b1;
     width: 100%;
 }
 
-table[name="procesos"] {
+table[name="completadas"] {
     border-collapse: collapse;
     margin: auto;
     font-size: 0.75em;
@@ -17,7 +16,7 @@ table[name="procesos"] {
 }
 
 td,
-th{
+th {
     padding: 12px 15px;
     margin: auto;
     justify-content: center;
@@ -26,10 +25,6 @@ th{
     color: black;
 }
 
-legend{
-text-align: left;
-font-weight: 600;
-}
 button {
     display: block;
     margin: auto;
@@ -55,17 +50,3 @@ a[name="printt"] {
 button:hover {
     background-color: #0056b3;
 }
-/* Estilo base para la alerta */
-.alert {
-    padding: 15px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-
-  /* Estilo para la alerta de éxito */
-  .alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-  }

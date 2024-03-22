@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Policies\JefeDeTurnoPolicy;
+use App\Models\JefeDeTurno;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,14 +14,17 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        // Aquí se agregan las asignaciones de modelos a políticas
+        JefeDeTurno::class => JefeDeTurnoPolicy::class,
     ];
 
     /**
      * Register any authentication / authorization services.
+     *
+     * @return void
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        $this->registerPolicies();
     }
 }
