@@ -4,7 +4,7 @@
 <head>
     @extends('layouts.app')
     @section('title')
-        TRAMITAR LICENCIA
+        GENERAR LICENCIA
     @endsection
 
     @section('meta-description')
@@ -31,7 +31,7 @@
                 <div class="col-md-77">
                     <legend for="Unidad" class="form-label">LICENCIA A TRABAJAR</legend>
                     <select class="form-select" id="LicenciaTrabajar" name="tipo_licencia" required>
-                        <option selected disabled value="">SELECCIONE...</option>
+                        <option selected disabled value="">Seleccione...</option>
                         <option value="LICENCIA EN VIVO">LICENCIA EN VIVO</option>
                         <option value="LICENCIA EN MUERTO">LICENCIA EN MUERTO</option>
                         <option value="LICENCIA ESPECIAL">LICENCIA ESPECIAL</option>
@@ -39,43 +39,34 @@
                 </div>
                 <div class="col-md-4">
                     <legend for="Numerolicencia" class="form-label">NÚMERO DE LICENCIA</legend>
-                    <input placeholder="ejemplo: 01-24-123" type="tel" minlength="07" maxlength="11"
-                        class="form-control" id="Numerolicencia" name="numero_licencia" required />
+                    <input placeholder="Ejemplo: U1-24-123" type="tel" minlength="07" maxlength="11"
+                        class="form-control" id="Numerolicencia" name="numero_licencia"
+                        oninput="this.value = this.value.toUpperCase()" required />
                 </div>
                 <div class="col-md-4">
                     <legend for="DepartamentoSolicitante" class="form-label">DEPARTAMENTO SOLICITANTE</legend>
                     <select class="form-select" id="DepartamentoSolicitante" name="departamento_id" required>
-                        <option selected disabled value="">SELECCIONE...</option>
+                        <option selected disabled value="">Seleccione...</option>
                         @foreach ($departamentos as $departamento)
                             <option value="{{ $departamento->id }}">{{ $departamento->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <legend for="Unidad" class="form-label">UNIDAD</legend>
-                    <select class="form-select" id="Unidad" name="unidad" required>
-                        <option selected disabled value="">SELECCIONE...</option>
-                        <option value="U0">U0</option>
-                        <option value="U1">U1</option>
-                        <option value="U2">U2</option>
-                        <option value="U3">U3</option>
+                    <legend for="centro_gestor" class="form-label">CENTRO DE GESTOR</legend>
+                    <select class="form-select" id="centro_gestor" name="centro_gestor" required>
+                        <option selected disabled value="">Seleccione...</option>
+                        <option value="GT41">GT41</option>
+                        <option value="GR42">GR42</option>
+                        <option value="GR44">GR44</option>
                     </select>
                 </div>
-                {{--
-                <div class="col-md-4">
-                    <legend for="QuienConcede" class="form-label">QUIEN CONCEDE:</legend>
-                    <input type="hidden" name="jefe_de_turno_id" value="{{ $jefeDeTurno->id }}">
-                    <input class="form-select" type="text" id="QuienConcede" value="{{ $jefeDeTurno->nombre }}" readonly>
-                </div>
-                --}}
                 @php
                     $userIsJefeDeTurno = App\Models\JefeDeTurno::where('rpe', Auth::user()->rpe)->exists();
                 @endphp
-
                 @if ($userIsJefeDeTurno)
-                    <!-- Aquí va el contenido que solo pueden ver los jefes de turno -->
                     <div class="col-md-4">
-                        <legend for="QuienConcede" class="form-label">QUIEN CONCEDE:</legend>
+                        <legend for="QuienConcede" class="form-label">QUIEN CONCEDE</legend>
                         <input type="hidden" name="jefe_de_turno_id" value="{{ $jefeDeTurno->id }}">
                         <input class="form-select" type="text" id="QuienConcede" value="{{ $jefeDeTurno->nombre }}"
                             readonly>
@@ -83,27 +74,28 @@
                 @endif
 
                 <div class="col-md-4">
-                    <legend for="SeConcede" class="form-label">SE CONCEDE A:</legend>
+                    <legend for="SeConcede" class="form-label">SE CONCEDE A</legend>
                     <select class="form-select" id="SeConcede" name="empleado_id" required>
-                        <option selected disabled value="">SELECCIONE...</option>
+                        <option selected disabled value="">Seleccione...</option>
                         @foreach ($empleados as $empleado)
                             <option value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <legend for="centro_gestor" class="form-label">CENTRO DE GESTOR:</legend>
-                    <select class="form-select" id="centro_gestor" name="centro_gestor" required>
-                        <option selected disabled value="">SELECCIONE...</option>
-                        <option value="GT41">GT41</option>
-                        <option value="GR42">GR42</option>
-                        <option value="GR44">GR44</option>
+                    <legend for="Unidad" class="form-label">UNIDAD</legend>
+                    <select class="form-select" id="Unidad" name="unidad" required>
+                        <option selected disabled value="">Seleccione...</option>
+                        <option value="U0">U0</option>
+                        <option value="U1">U1</option>
+                        <option value="U2">U2</option>
+                        <option value="U3">U3</option>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <legend for="Equipo" class="form-label">EQUIPO</legend>
                     <select class="form-select" id="Equipo" name="equipo_id" required>
-                        <option selected disabled value="">SELECCIONE...</option>
+                        <option selected disabled value="">Seleccione...</option>
                         @foreach ($equipos as $equipo)
                             <option value="{{ $equipo->id }}">{{ $equipo->denominacion }}</option>
                         @endforeach
@@ -111,14 +103,14 @@
                 </div>
                 <br>
                 <div class="col-md-6">
-                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR:</legend>
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR</legend>
                     <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar"
                         oninput="this.value = this.value.toUpperCase()" required>
                 </div>
                 <br>
                 <div class="col-md-80">
-                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS:</legend>
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
                         name="comentario_especifico" id=" Instrucciones" oninput="this.value = this.value.toUpperCase()"
@@ -406,10 +398,9 @@
                 <fieldset>
                     <div class="col-md-4">
                         <input class="form-check-input" type="checkbox" value="01" id="CheckFormt">
-                        <button class="btn btn-primary" type="button" onclick="confirmSubmit()">ENVIAR</button>
+                        <button class="btn btn-primary" type="submit">ENVIAR</button>
                     </div>
                 </fieldset>
-
             </form>
         </fieldset>
     @endsection
@@ -417,12 +408,6 @@
     @push('scripts')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function confirmSubmit() {
-                if (confirm("¿Estás seguro de que deseas enviar el formulario?")) {
-                    document.getElementById("myForm").submit();
-                }
-            }
-
             $(document).ready(function() {
                 $('#Numerolicencia').on('keypress', function(e) {
                     var input = document.getElementById("Numerolicencia");
@@ -454,56 +439,57 @@
                             });
                         }
                     });
+                });
 
-                    $('#Unidad').on('change', function() {
-                        var unidad = this.value;
-                        var centro = $('#centro_gestor option:selected').val();
+                $('#Unidad').on('change', function() {
+                    var unidad = this.value;
+                    var centro = $('#centro_gestor option:selected').val();
 
-                        $.ajax({
-                            url: '{{ route('getEquipos') }}',
-                            type: "get",
-                            data: {
-                                centro_gestor: centro,
-                                unidad: unidad,
-                                _token: '{{ csrf_token() }}'
-                            },
-                            dataType: 'json',
-                            success: function(result) {
-                                $("#Equipo").html(
-                                    '<option selected disabled value="">SELECCIONE...</option>'
-                                );
-                                $.each(result, function(key, value) {
-                                    $("#Equipo").append('<option value="' + value
-                                        .id + '">' +
-                                        value.denominacion + '</option>');
-                                });
-                            }
-                        });
+                    $.ajax({
+                        url: '{{ route('getEquipos') }}',
+                        type: "get",
+                        data: {
+                            centro_gestor: centro,
+                            unidad: unidad,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(result) {
+                            $("#Equipo").html(
+                                '<option selected disabled value="">SELECCIONE...</option>'
+                            );
+                            $.each(result, function(key, value) {
+                                $("#Equipo").append('<option value="' + value
+                                    .id + '">' +
+                                    value.denominacion + '</option>');
+                            });
+                        }
                     });
-                    $('#centro_gestor').on('change', function() {
-                        var centro = this.value;
-                        var unidad = $('#Unidad option:selected').val();
+                });
 
-                        $.ajax({
-                            url: '{{ route('getEquipos') }}',
-                            type: "get",
-                            data: {
-                                centro_gestor: centro,
-                                unidad: unidad,
-                                _token: '{{ csrf_token() }}'
-                            },
-                            dataType: 'json',
-                            success: function(result) {
-                                $("#Equipo").html(
-                                    '<option selected disabled value="">SELECCIONE...</option>'
-                                );
-                                $.each(result, function(key, value) {
-                                    $("#Equipo").append('<option value="' + value
-                                        .id + '">' +
-                                        value.denominacion + '</option>');
-                                });
-                            }
-                        });
+                $('#centro_gestor').on('change', function() {
+                    var centro = this.value;
+                    var unidad = $('#Unidad option:selected').val();
+
+                    $.ajax({
+                        url: '{{ route('getEquipos') }}',
+                        type: "get",
+                        data: {
+                            centro_gestor: centro,
+                            unidad: unidad,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        dataType: 'json',
+                        success: function(result) {
+                            $("#Equipo").html(
+                                '<option selected disabled value="">SELECCIONE...</option>'
+                            );
+                            $.each(result, function(key, value) {
+                                $("#Equipo").append('<option value="' + value
+                                    .id + '">' +
+                                    value.denominacion + '</option>');
+                            });
+                        }
                     });
                 });
             });

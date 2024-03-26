@@ -50,6 +50,3 @@ Route::get('/status/liberar/{id}', [LicenciasController::class, 'LiberarLicencia
 Route::get('/status/print/{id}', [LicenciasController::class, 'showLicencia']);
 
 Route::get('/documentos/print/{id}', [LicenciasController::class, 'showLicense']);
-/*
-Route::get('/panel/principal', [GraphController::class, 'mostrarGrafico'])->name('panel.principal');
-*/

@@ -26,7 +26,7 @@
     <h4> Tel: 612 123 7702 </h4>
     <h2> RESPALDO DEL LIBRO DE REGISTRO DE LICENCIAS DE LA C.T. PUNTA PRIETA</h2>
     <br>
-    <h2> <label>LIBERAR LICENCIA </label> </h2>
+    <h2> LIBERAR LICENCIA </h2>
     <br>
     <p> TIPO DE LICENCIA: <label> {{ $licencia->tipo_licencia }} </label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NÚMERO

@@ -16,7 +16,16 @@ table[name="procesos"] {
     background-color: #ffffff;
 }
 
-td,
+td{
+    padding: 12px 15px;
+    margin: auto;
+    justify-content: center;
+    border: 2px solid #000000c3;
+    text-align: center;
+    color: black;
+    font-size: initial;
+}
+
 th{
     padding: 12px 15px;
     margin: auto;
@@ -24,8 +33,9 @@ th{
     border: 2px solid #000000c3;
     text-align: center;
     color: black;
+    font-weight: 800;
+    font-size: initial;
 }
-
 legend{
 text-align: left;
 font-weight: 600;
@@ -68,4 +78,8 @@ button:hover {
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+  }
+
+  label{
+font-weight: 800;
   }

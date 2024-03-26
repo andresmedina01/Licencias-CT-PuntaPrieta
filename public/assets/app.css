@@ -589,6 +589,8 @@ legend {
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
   font-size:medium ;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-title {
@@ -624,6 +626,8 @@ legend {
   color: var(--bs-card-cap-color);
   background-color: var(--bs-card-cap-bg);
   border-top: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .card-footer:last-child {
   border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);
@@ -1024,21 +1028,59 @@ legend {
 }
 
 div[class=col-md-4] {
-    width: 100px; /* Ancho del elemento */
-    height: 200px; /* Altura del elemento */
-    margin-left: auto; /* Centrar horizontalmente */
-    margin-right: auto; /* Centrar horizontalmente */
+    width: 600px;/* Ancho del elemento */
+    height: 300px; /* Altura del elemento */
+    margin: auto;
+
 }
 /* Ajuste del contenedor row */
-.row {
-    max-width:600px ;
-    margin-left: 15px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
-    margin-right: 15px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
+#row1 {
+    width: auto;
+    height: auto;
+    margin-left: 10px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
+    margin-right: 10px; /* Ajuste para compensar el margen negativo predeterminado de las columnas */
 }
 
 /* Opcional: Centrar el contenido en la fila */
-.row {
+#row1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+canvas[id="myBarChart"] {
+    margin: 5px; /* Espaciado entre gráficos */
+    border: 1px solid #ccc; /* Borde del gráfico */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: -7px -7px 4px rgba(0, 0, 0, 0.1); /* Sombreado */
+
+    background-color: #fff; /* Color de fondo del gráfico */
+    font-family: 'Arial', sans-serif; /* Tipografía */
+    font-size: 12px; /* Tamaño de fuente */
+}
+canvas[id="myBarChart2"] {
+    margin: 5px; /* Espaciado entre gráficos */
+    border: 1px solid #ccc; /* Borde del gráfico */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: -7px -7px 4px rgba(0, 0, 0, 0.1); /* Sombreado */
+    background-color: #fff; /* Color de fondo del gráfico */
+    font-family: 'Arial', sans-serif; /* Tipografía */
+    font-size: 12px; /* Tamaño de fuente */
+
+}
+h1{
+    font-weight: 800;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif; /* Usando la fuente Roboto como ejemplo */
+    font-size: 24px; /* Tamaño de fuente */
+    font-weight: bold; /* Peso de la fuente */
+    color: #333; /* Color del texto */
+    text-align: left; /* Alineación del texto */
+    margin-top: 80px;
+    margin-bottom: 20px;
+    margin-left: 47px; /* Margen superior */
 }

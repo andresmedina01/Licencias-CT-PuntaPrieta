@@ -16,7 +16,6 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 class LicenciasController extends Controller
 {
-
     public function show()
     {
         try {

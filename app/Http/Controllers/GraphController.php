@@ -6,11 +6,13 @@ use App\Models\Licencias;
 use App\Models\Departamento;
 use App\Models\JefeDeTurno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GraphController extends Controller
 {
     public function ShowGraph()
     {
+        $user = Auth::user();
         // Obtener los datos para las gráficas de departamentos
         $departamentos = Departamento::pluck('nombre')->toArray();
         $licenciasPorDepartamento = Licencias::selectRaw('departamento_id, COUNT(*) as cantidad')
@@ -24,6 +26,6 @@ class GraphController extends Controller
             ->pluck('cantidad')->toArray();
 
         // Devolver la vista con todos los datos
-        return view('panel.principal', compact('departamentos', 'licenciasPorDepartamento', 'jefesDeTurno', 'licenciasPorJefeDeTurno'));
+        return view('panel.principal', compact('user', 'departamentos', 'licenciasPorDepartamento', 'jefesDeTurno', 'licenciasPorJefeDeTurno'));
     }
 }

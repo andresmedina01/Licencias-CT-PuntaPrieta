@@ -5,7 +5,7 @@
     @extends('layouts.app')
 
     @section('title')
-        STATUS
+        ESTADO
     @endsection
 
     @section('meta-description')
@@ -14,16 +14,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/status.css') }}" />
-
 </head>
 
 <body>
-
     @section('content')
         <table name="procesos">
             <tr name="proceso">
-                <td colspan="15" style="border: none; font-size: 1.2rem; padding-bottom: 1.2rem">
-                    LICENCIAS EN ESTADO DE PROCESO</td>
+                <th colspan="15" style="border: none; font-size: 1.2rem; padding-bottom: 1.2rem">
+                    LICENCIAS EN ESTADO DE PROCESO</th>
             </tr>
             <tr style="background-color: #cccccc">
                 <th>TIPO DE LICENCIA</th>
@@ -33,21 +31,18 @@
                 <th>SE CONCEDIO A</th>
                 <th>EQUIPO</th>
                 <th>TRABAJO QUE SE REALIZARA</th>
-                <th>INSTRUCCIONES ESPECIFICAS</th>
                 <th>ACCIONES</th>
             </tr>
             <tbody>
                 @foreach ($licenciasNoLiberadas as $licencia)
                     <tr>
                         <td>{{ $licencia->tipo_licencia }}</td>
-                        <td>{{ $licencia->numero_licencia }}</td>
+                        <td><label> {{ $licencia->numero_licencia }} </label></td>
                         <td>{{ $licencia->jefeDeTurno->nombre }}</td>
                         <td>{{ $licencia->departamento->nombre }}</td>
                         <td>{{ $licencia->empleado->nombre }}</td>
                         <td>{{ $licencia->equipo->denominacion }}</td>
                         <td>{{ $licencia->comentario_trabajo_realizar }}</td>
-                        <td>{{ $licencia->comentario_especifico }}</td>
-
                         <td>
                             <br>
                             <a name="printt" href="/status/liberar/{{ $licencia->id }}">LIBERAR</a>
