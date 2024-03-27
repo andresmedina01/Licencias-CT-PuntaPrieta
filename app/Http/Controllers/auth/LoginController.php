@@ -26,7 +26,6 @@ class LoginController extends Controller
             return redirect()->route('login')->withErrors(['error' => 'Las credenciales proporcionadas son incorrectas.']);
         }
 
-        // Crear la sesión
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
         Auth::login($user);
 

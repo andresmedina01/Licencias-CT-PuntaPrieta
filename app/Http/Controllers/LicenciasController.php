@@ -22,10 +22,8 @@ class LicenciasController extends Controller
             $user = Auth::user();
             $jefeDeTurno = JefeDeTurno::where('rpe', $user->rpe)->first();
 
-            // Verifica si $jefeDeTurno está definido
             if (!$jefeDeTurno) {
-                // Maneja el caso en el que no se encuentra un jefe de turno
-                return redirect()->back()->with('error', 'No se encontró el jefe de turno.');
+                return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISO PARA EMITIR LICENCIAS');
             }
 
             $this->authorize('view', $jefeDeTurno);
@@ -36,7 +34,7 @@ class LicenciasController extends Controller
 
             return view('panel.licencias.index', compact('departamentos', 'empleados', 'equipos', 'jefeDeTurno'));
         } catch (AuthorizationException $e) {
-            return redirect()->back()->with('error', 'No estás autorizado para emitir licencias.');
+            return redirect()->route('principal')->with('error', 'NO ESTAS AUTORIZADO PARA EMITIR LICENCIAS');
         }
     }
 
@@ -61,7 +59,6 @@ class LicenciasController extends Controller
             'bloquear',
         ]);
 
-        // Convertir los campos de tipo array en cadenas separadas por comas
         foreach (['maniobrar', 'asegurar', 'bloquear'] as $field) {
             if (isset($data[$field]) && is_array($data[$field])) {
                 $data[$field] = implode(',', $data[$field]);
@@ -73,13 +70,12 @@ class LicenciasController extends Controller
         Licencias::create($data);
         Log::info('Se ah emitido una nueva licencia con el RPE: ' . $request->rpe);
 
-        return redirect()->route('licencias')->with('success', '¡La licencia se ha guardado correctamente!');
+        return redirect()->route('licencias')->with('success', 'LICENCIA GENERADA CORRECTAMENTE');
     }
 
     public function getEmpleados(Request $request)
     {
         $empleados = Empleado::where('departamentos_id', $request->departamento_id)->get();
-
         return response()->json($empleados);
     }
 
@@ -133,7 +129,6 @@ class LicenciasController extends Controller
 
     public function showLicences()
     {
-        // Obtener todas las licencias
         $licencias = Licencias::all();
 
         return view('panel.documentos.index', compact('licencias'));
@@ -145,12 +140,29 @@ class LicenciasController extends Controller
         return $jefeDeTurno !== null;
     }
 
+    public function destroy(string $id)
+    {
+        try {
+            if (!$this->userIsJefeDeTurno()) {
+                throw new AuthorizationException();
+            }
+
+            $licencia = Licencias::findOrFail($id);
+            $licencia->delete();
+
+            return redirect()->route('status')->with('success', 'LICENCIA ELIMINADA CORRECTAMENTE.');
+        } catch (AuthorizationException $e) {
+            return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA ELIMINAR LICENCIAS');
+        } catch (\Exception $e) {
+            return redirect()->route('principal')->with('error', 'SE PRODUJO UN ERROR AL ELIMINAR LA LICENCIA.');
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $licencia = Licencias::findOrFail($id);
-        // Validación de permisos
         if (!$this->userIsJefeDeTurno()) {
-            return redirect()->route('principal')->with('error', 'No tienes permiso para liberar esta licencia.');
+            return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA LIBERAR LICENCIAS');
         }
 
         $request->validate([
@@ -165,6 +177,6 @@ class LicenciasController extends Controller
 
         $licencia->save();
 
-        return redirect()->route('status')->with('success', 'Licencia liberada correctamente');
+        return redirect()->route('status')->with('success', 'LICENCIA LIBERADA CORRECTAMENTE');
     }
 }

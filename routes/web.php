@@ -17,11 +17,7 @@ use App\Http\Controllers\GraphController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('panel.principal');
-})->name('principal')->middleware('auth');
-*/
+
 
 Route::get('/', [GraphController::class, 'ShowGraph'])->name('principal')->middleware('auth');
 
@@ -46,6 +42,9 @@ Route::get('get-empleados', [LicenciasController::class, 'getEmpleados'])->name(
 Route::get('get-equipos', [LicenciasController::class, 'getEquipos'])->name('getEquipos');
 
 Route::get('/status/liberar/{id}', [LicenciasController::class, 'LiberarLicencia']);
+
+Route::delete('/status/eliminar/{id}', [LicenciasController::class, 'destroy']);
+
 
 Route::get('/status/print/{id}', [LicenciasController::class, 'showLicencia']);
 

@@ -18,7 +18,12 @@
 
 <body>
     @section('content')
-        <table name="procesos">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        <table id="procesos">
             <tr name="proceso">
                 <th colspan="15" style="border: none; font-size: 1.2rem; padding-bottom: 1.2rem">
                     LICENCIAS EN ESTADO DE PROCESO</th>
@@ -31,6 +36,7 @@
                 <th>SE CONCEDIO A</th>
                 <th>EQUIPO</th>
                 <th>TRABAJO QUE SE REALIZARA</th>
+                <th>FECHA DE ELABORACIÓN</th>
                 <th>ACCIONES</th>
             </tr>
             <tbody>
@@ -43,16 +49,28 @@
                         <td>{{ $licencia->empleado->nombre }}</td>
                         <td>{{ $licencia->equipo->denominacion }}</td>
                         <td>{{ $licencia->comentario_trabajo_realizar }}</td>
+                        <td>{{ $licencia->created_at }}</td>
                         <td>
-                            <br>
-                            <a name="printt" href="/status/liberar/{{ $licencia->id }}">LIBERAR</a>
+                            <a name="liberar" href="/status/liberar/{{ $licencia->id }}">LIBERAR</a>
                             <br>
                             <a name="printt" href="/status/print/{{ $licencia->id }}">IMPRIMIR</a>
+                            <br>
+                            <form action="/status/eliminar/{{ $licencia->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button name="eliminar"
+                                    onclick="return eliminarAlumno('¿Estas seguro de deseas eliminar esta licencia?')">ELIMINAR</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <script>
+            function eliminarAlumno(value) {
+                action = confirm(value) ? true : event.preventDefault()
+            }
+        </script>
     @endsection
 
 </body>

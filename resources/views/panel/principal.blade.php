@@ -17,6 +17,12 @@
 
 <body>
     @section('content')
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <H1>RESPALDO DIGITAL DEL LIBRO DE LICENCIAS</H1>
 
         <h2> BIENVENIDO, {{ $user->name }} </h2>

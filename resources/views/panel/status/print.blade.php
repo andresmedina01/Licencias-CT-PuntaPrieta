@@ -13,7 +13,6 @@
 <body>
     <div class="container">
         <div class="item">
-            <!-- Primer grupo de datos -->
             <p> NÚMERO DE LICENCIA: <label> {{ $licencia->numero_licencia }} </label> </p>
             <p> FECHA DE CONCESIÓN: <label> {{ $licencia->created_at }}</label> </p>
             <p>CENTRO DE GESTOR: <label> {{ $licencia->centro_gestor }} </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UNIDAD:
