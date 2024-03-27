@@ -105,7 +105,13 @@
                 options: {
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            type: 'linear',
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return Math.round(value);
+                                }
+                            }
                         }
                     }
                 }
