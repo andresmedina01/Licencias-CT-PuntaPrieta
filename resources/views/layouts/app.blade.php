@@ -154,35 +154,27 @@
             color: #2BD6B4;
         }
 
-        /*
-        button[name="logout"] {
-            border-radius: 4px;
-            height: auto;
-            width: auto;
-            color: black;
-            background-color: #2BD6B4;
-            margin-top: 40%;
-            margin-left: 450%;
+        .logconta {
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
 
-        */
-
-        div[name="logout"] {
-            text-align: center;
+        .logout {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
         }
 
         .logout-button {
             padding: 10px 20px;
             border: none;
-            width: auto;
             border-radius: 5px;
             background-color: rgba(255, 0, 0, 0.75);
             color: white;
-            font-size: 10px;
+            font-size: 12px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 23%;
-            margin-left: 280%;
         }
 
         .logout-button:hover {
