@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if (!Auth::attempt($credentials)) {
             Log::warning('Inicio de sesión fallido con el correo: ' . $request->rpe);
-            return redirect()->route('login')->withErrors(['error' => 'Las credenciales proporcionadas son incorrectas.']);
+            return redirect()->route('login')->withErrors(['error' => 'LAS CREDENCIALES PROPORCINADAS SON INCORRECTAS']);
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
@@ -36,6 +36,6 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-        return redirect('')->with('success', '¡Se ha iniciado la sesion correctamente!');
+        return redirect('')->with('success', '¡SESIÓN INICIADA CORRECTAMENTE!');
     }
 }

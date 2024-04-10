@@ -79,6 +79,11 @@
                                 <div class="field padding-bottom--24">
                                     <input type="submit" name="submit" value="INGRESAR" />
                                 </div>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>

@@ -37,10 +37,39 @@ class LicenciasController extends Controller
             return redirect()->route('principal')->with('error', 'NO ESTAS AUTORIZADO PARA EMITIR LICENCIAS');
         }
     }
-
     public function store(Request $request)
     {
         $user = Auth::user();
+
+        $request->validate([
+            'tipo_licencia' => 'required',
+            'numero_licencia' => 'required',
+            'unidad' => 'required',
+            'departamento_id' => 'required',
+            'empleado_id' => 'required',
+            'equipo_id' => 'required',
+            'centro_gestor' => 'required',
+            'comentario_trabajo_realizar' => 'required',
+            'comentario_especifico' => 'required',
+            'energia_equipo' => 'required',
+            'maniobrar' => 'required',
+            'asegurar' => 'required',
+            'bloquear' => 'required',
+        ], [
+            'tipo_licencia.required' => 'El campo LICENCIA A TRABAJAR es obligatorio.',
+            'numero_licencia.required' => 'El campo NÚMERO DE LICENCIA es obligatorio.',
+            'unidad' => 'El campo UNIDAD es obligatorio.',
+            'departamento_id' => 'El campo DEPARTAMENTO es obligatorio.',
+            'empleado_id' => 'El campo A QUIEN SE CONCEDE es obligatorio.',
+            'equipo_id' => 'El campo EQUIPO es obligatorio.',
+            'centro_gestor' => 'El campo CENTRO DE GESTOR es obligatorio.',
+            'comentario_trabajo_realizar' => 'El campo TRABAJO A REALIZAR es obligatorio.',
+            'comentario_especifico' => 'El campo INSTRUCCIONES es obligatorio.',
+            'energia_equipo' => 'El campo ENERGÍA EN EL EQUIPO es obligatorio.',
+            'maniobrar' => 'El campo MANIOBRAR es obligatorio.',
+            'asegurar' => 'El campo ASEGURAR es obligatorio.',
+            'bloquear' => 'El campo BLOQUEAR es obligatorio.',
+        ]);
 
         $data = $request->only([
             'tipo_licencia',
@@ -61,7 +90,7 @@ class LicenciasController extends Controller
 
         foreach (['maniobrar', 'asegurar', 'bloquear'] as $field) {
             if (isset($data[$field]) && is_array($data[$field])) {
-                $data[$field] = implode(',', $data[$field]);
+                $data[$field] = implode(', ', $data[$field]);
             }
         }
 
@@ -72,6 +101,7 @@ class LicenciasController extends Controller
 
         return redirect()->route('licencias')->with('success', 'LICENCIA GENERADA CORRECTAMENTE');
     }
+
 
     public function getEmpleados(Request $request)
     {
@@ -150,11 +180,11 @@ class LicenciasController extends Controller
             $licencia = Licencias::findOrFail($id);
             $licencia->delete();
 
-            return redirect()->route('status')->with('success', 'LICENCIA ELIMINADA CORRECTAMENTE.');
+            return redirect()->route('status')->with('success', 'LICENCIA ELIMINADA CORRECTAMENTE');
         } catch (AuthorizationException $e) {
             return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA ELIMINAR LICENCIAS');
         } catch (\Exception $e) {
-            return redirect()->route('principal')->with('error', 'SE PRODUJO UN ERROR AL ELIMINAR LA LICENCIA.');
+            return redirect()->route('principal')->with('error', 'SE PRODUJO UN ERROR AL ELIMINAR LA LICENCIA');
         }
     }
 

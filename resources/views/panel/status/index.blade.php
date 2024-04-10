@@ -18,6 +18,11 @@
 
 <body>
     @section('content')
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -35,7 +40,7 @@
                 <th>DEPARTAMENTO</th>
                 <th>SE CONCEDIO A</th>
                 <th>EQUIPO</th>
-                <th>TRABAJO QUE SE REALIZARA</th>
+                <th>TRABAJO A REALIZAR</th>
                 <th>FECHA DE ELABORACIÓN</th>
                 <th>ACCIONES</th>
             </tr>

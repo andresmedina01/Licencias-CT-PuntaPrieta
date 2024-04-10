@@ -10,15 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         return view('auth.register');
     }
 
-    public function register(RegisterRequest $request){
-         try {
+    public function register(RegisterRequest $request)
+    {
+        try {
             $user = User::create($request->validated());
-            
-            return redirect('login')->with('success', '¡Usuario registrado exitosamente!');
+
+            return redirect('login')->with('success', '¡USUARIO REGISTRADO EXITOSAMENTE!');
         } catch (\Exception $e) {
 
             return redirect()->back()->with('error', 'Error al registrar el usuario: ' . $e->getMessage());

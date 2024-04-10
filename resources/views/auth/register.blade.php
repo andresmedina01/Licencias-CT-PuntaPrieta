@@ -60,6 +60,11 @@
                 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
                     <h1>REGISTRO</h1>
                 </div>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 @if (session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
