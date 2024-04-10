@@ -70,84 +70,52 @@
     @endsection
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
         <script>
+            const colors = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)',
+                'rgba(121, 233, 209, 0.2)'
+            ];
             const ctxBarra = document.getElementById('myBarChart');
-
+            const dataBarra = {
+                labels: {!! json_encode($departamentos) !!},
+                datasets: [{
+                    label: 'LICENCIAS GENERADAS',
+                    data: {!! json_encode($licenciasPorDepartamento) !!},
+                    backgroundColor: colors,
+                    borderColor: colors.map(color => color.replace('0.2',
+                        '1')),
+                    borderWidth: 1
+                }]
+            };
             new Chart(ctxBarra, {
                 type: 'bar',
-                data: {
-                    labels: {!! json_encode($departamentos) !!},
-                    datasets: [{
-                        label: 'LICENCIAS GENERADAS',
-                        data: {!! json_encode($licenciasPorDepartamento) !!},
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 205, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(201, 203, 207, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
+                data: dataBarra,
                 options: {
                     scales: {
                         y: {
                             beginAtZero: true,
-                            type: 'linear',
-                            ticks: {
-                                callback: function(value, index, values) {
-                                    return Math.round(value);
-                                }
-                            }
                         }
                     }
                 }
             });
-
             const ctxBarra2 = document.getElementById('myBarChart2');
-
-            let dataCopy = JSON.parse(JSON.stringify({
+            const dataCopy = {
                 labels: {!! json_encode($jefesDeTurno) !!},
                 datasets: [{
                     label: 'LICENCIAS GENERADAS',
                     data: {!! json_encode($licenciasPorJefeDeTurno) !!},
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)',
-                        'rgba(121, 233, 209, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)',
-                        'rgba(121, 233, 209)'
-                    ],
+                    backgroundColor: colors,
+                    borderColor: colors.map(color => color.replace('0.2',
+                        '1')),
                     borderWidth: 1
                 }]
-            }));
-
+            };
             new Chart(ctxBarra2, {
                 type: 'bar',
                 data: dataCopy,
