@@ -22,7 +22,7 @@
                 {{ session('error') }}
             </div>
         @endif
-
+        {{-- sistema para mostrar los mensajes de alerta  --}}
         <H1>RESPALDO DIGITAL DEL LIBRO DE LICENCIAS</H1>
 
         <h2> BIENVENIDO, {{ $user->name }} </h2>
@@ -38,6 +38,7 @@
             </div>
         </div>
         <br>
+        {{-- rutas establecidas para vencidas, proceso y completadas  --}}
         <div class="row">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-danger text-white mb-4">
@@ -81,6 +82,7 @@
                 'rgba(201, 203, 207, 0.2)',
                 'rgba(121, 233, 209, 0.2)'
             ];
+            // primera grafica la cual representa la cantidad de licencias generadas por departamento
             const ctxBarra = document.getElementById('myBarChart');
             const dataBarra = {
                 labels: {!! json_encode($departamentos) !!},
@@ -104,6 +106,7 @@
                     }
                 }
             });
+            // segunda grafica la cual representa la cantidad de licencias generadas por jefes de turno
             const ctxBarra2 = document.getElementById('myBarChart2');
             const dataCopy = {
                 labels: {!! json_encode($jefesDeTurno) !!},

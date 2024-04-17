@@ -90,6 +90,17 @@ a[name="printt"] {
     cursor: pointer;
 }
 
+a[name="editar"] {
+    display: block;
+    margin: auto;
+    padding: 10px 18px;
+    background-color: rgba(193, 150, 10, 0.911);
+    color: #fff;
+    border: none;
+    font-size: .6rem;
+    cursor: pointer;
+}
+
 button:hover {
     background-color: #0056b3;
 }

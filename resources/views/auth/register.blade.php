@@ -77,7 +77,7 @@
                         <form class="login" method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="field padding-bottom--24">
-                                <input type="text" name="name" placeholder="NOMBRE" required />
+                                <input type="text" name="name" placeholder="NOMBRE COMPLETO" required />
                             </div>
                             <div class="field padding-bottom--24">
                                 <input type="text" name="rpe" placeholder="RPE" required />

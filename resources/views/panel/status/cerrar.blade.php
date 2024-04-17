@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>LIBERAR</title>
+    <title>CERRAR</title>
     <link rel="stylesheet" href="{{ asset('assets/statsliberar.css') }}" />
 
 
@@ -26,7 +26,7 @@
     <h4> Tel: 612 123 7702 </h4>
     <h2> RESPALDO DEL LIBRO DE REGISTRO DE LICENCIAS DE LA C.T. PUNTA PRIETA</h2>
     <br>
-    <h2> LIBERAR LICENCIA </h2>
+    <h2> CERRAR LICENCIA </h2>
     <br>
     <p> TIPO DE LICENCIA: <label> {{ $licencia->tipo_licencia }} </label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NÚMERO
@@ -61,13 +61,13 @@
         @method('PUT')
         <input type="hidden" name="estado" value="LIBERADO">
         <input type="hidden" name="usuario_id" value="{{ Auth::id() }}">
-        <button type="button" class="btn btn-warning btn-sm" onclick="confirmSubmit()">LIBERAR</button>
+        <button type="button" class="btn btn-warning btn-sm" onclick="confirmSubmit()">CERRAR</button>
     </form>
 
 </body>
 <script>
     function confirmSubmit() {
-        if (confirm("¿Estás seguro de que deseas liberar esta licencia?")) {
+        if (confirm("¿Estás seguro de que deseas CERRAR la licencia?")) {
             document.getElementById("myStats").submit();
         } else {
 

@@ -56,15 +56,17 @@
                         <td>{{ $licencia->comentario_trabajo_realizar }}</td>
                         <td>{{ $licencia->created_at }}</td>
                         <td>
-                            <a name="liberar" href="/status/liberar/{{ $licencia->id }}">LIBERAR</a>
-                            <br>
                             <a name="printt" href="/status/print/{{ $licencia->id }}">IMPRIMIR</a>
+                            <br>
+                            <a name="liberar" href="/status/cerrar/{{ $licencia->id }}">CERRAR</a>
+                            <br>
+                            <a name="editar" href="/status/editar/{{ $licencia->id }}">EDITAR</a>
                             <br>
                             <form action="/status/eliminar/{{ $licencia->id }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button name="eliminar"
-                                    onclick="return eliminarAlumno('¿Estas seguro de deseas eliminar esta licencia?')">ELIMINAR</button>
+                                    onclick="return eliminarAlumno('¿Estas seguro de deseas ELIMINAR esta licencia?')">ELIMINAR</button>
                             </form>
                         </td>
                     </tr>

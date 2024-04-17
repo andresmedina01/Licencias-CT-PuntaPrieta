@@ -14,6 +14,8 @@ use App\Models\Equipo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 
+
+// area de los controladores de licencias
 class LicenciasController extends Controller
 {
     public function show()
@@ -22,10 +24,10 @@ class LicenciasController extends Controller
             $user = Auth::user();
             $jefeDeTurno = JefeDeTurno::where('rpe', $user->rpe)->first();
 
-            if (!$jefeDeTurno) {
+            if (!$jefeDeTurno) {    //ocupas contar con el perfil de jefe de turno, sino mostrara la siguiente alerta
                 return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISO PARA EMITIR LICENCIAS');
             }
-
+            // si cuentas con permiso mostrara el formulario para generar licencias
             $this->authorize('view', $jefeDeTurno);
 
             $departamentos = Departamento::all();
@@ -37,6 +39,8 @@ class LicenciasController extends Controller
             return redirect()->route('principal')->with('error', 'NO ESTAS AUTORIZADO PARA EMITIR LICENCIAS');
         }
     }
+    // controlador para almacenar informacion en la DB
+    // muestra que se solicitara y que almacenara del formulario
     public function store(Request $request)
     {
         $user = Auth::user();
@@ -69,9 +73,9 @@ class LicenciasController extends Controller
             'maniobrar' => 'El campo MANIOBRAR es obligatorio.',
             'asegurar' => 'El campo ASEGURAR es obligatorio.',
             'bloquear' => 'El campo BLOQUEAR es obligatorio.',
-        ]);
+        ]); // se anexan validaciones, la cual si no se llena un campo no pueda emitir la licencia
 
-        $data = $request->only([
+        $data = $request->only([    // solo solicitara esta informacion para almacenarla en la DB
             'tipo_licencia',
             'numero_licencia',
             'unidad',
@@ -98,18 +102,18 @@ class LicenciasController extends Controller
 
         Licencias::create($data);
         Log::info('Se ah emitido una nueva licencia con el RPE: ' . $request->rpe);
-
+        // cuando haya capturado toda la informacion mostrara el siguiente mensaje
         return redirect()->route('licencias')->with('success', 'LICENCIA GENERADA CORRECTAMENTE');
     }
 
-
+    // funcion para activar las validaciones de la funcion de departamento y solicitante
     public function getEmpleados(Request $request)
     {
         $empleados = Empleado::where('departamentos_id', $request->departamento_id)->get();
         return response()->json($empleados);
     }
 
-
+    // funcion para activar las validaciones de la funcion de unidad, centro de gestor y equipo
     public function getEquipos(Request $request)
     {
         if (empty($request->centro_gestor)) {
@@ -126,7 +130,8 @@ class LicenciasController extends Controller
         return response()->json($equipos);
     }
 
-
+    // realiza el filtro de la licencias en procesos y las completadas
+    // si esta en proceso las mostrara en el panel de estado
     public function index()
     {
         $licencias = Licencias::all();
@@ -139,24 +144,27 @@ class LicenciasController extends Controller
     }
 
 
-    public function liberarLicencia(string $id)
+    //funcion para cerrar una licencia
+    // una vez que se cierre la licencia la marcara como licencia completada
+    public function cerrarLicencia(string $id)
     {
         $licencia = Licencias::FindOrFail($id);
-        return view('panel.status.liberar', ['licencia' => $licencia]);
+        return view('panel.status.cerrar', ['licencia' => $licencia]);
     }
-
+    // mostrara la licencia previamente generada en la vista de imprimir
     public function showLicencia(string $id)
     {
         $licencia = Licencias::FindOrFail($id);
         return view('panel.status.print', ['licencia' => $licencia]);
     }
-
+    // mostrara informacion relevante de la licencia en la vista para imprimir
     public function showLicense(string $id)
     {
         $licencia = Licencias::FindOrFail($id);
         return view('panel.documentos.print', ['licencia' => $licencia]);
     }
 
+    //mostrara la licencia que se han cerrado correctamente
     public function showLicences()
     {
         $licencias = Licencias::all();
@@ -164,6 +172,8 @@ class LicenciasController extends Controller
         return view('panel.documentos.index', compact('licencias'));
     }
 
+    // verificacion si el usuario es jefe de turno
+    //si lo es, pdora eliminar licencia
     private function userIsJefeDeTurno()
     {
         $jefeDeTurno = JefeDeTurno::where('rpe', Auth::user()->rpe)->first();
@@ -181,32 +191,75 @@ class LicenciasController extends Controller
             $licencia->delete();
 
             return redirect()->route('status')->with('success', 'LICENCIA ELIMINADA CORRECTAMENTE');
-        } catch (AuthorizationException $e) {
+        } catch (AuthorizationException $e) {   // mostrara el mensaje si es jefe de turno
             return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA ELIMINAR LICENCIAS');
-        } catch (\Exception $e) {
+        } catch (\Exception $e) {   //mostrara el mensaje si no es jefe de turno
             return redirect()->route('principal')->with('error', 'SE PRODUJO UN ERROR AL ELIMINAR LA LICENCIA');
         }
     }
 
+    public function edit($id)
+    {
+        $licencia = Licencias::findOrFail($id); // Obtén la licencia por su ID
+        return view('panel.status.editar', ['licencia' => $licencia]);
+    }
+
+
+    public function actualizar(Request $request, $id)
+    {
+        // Verificar si el usuario actual es un jefe de turno
+        $user = Auth::user();
+        $jefeDeTurno = JefeDeTurno::where('rpe', $user->rpe)->first();
+
+        if (!$jefeDeTurno) {
+            // Si el usuario actual no es un jefe de turno, redirigir con un mensaje de error
+            return redirect()->back()->with('error', 'Solo los jefes de turno pueden editar licencias.');
+        }
+
+        // Validar los datos de la solicitud
+        $request->validate([
+            'comentario_trabajo_realizar' => 'required',
+            'comentario_especifico' => 'required',
+            // Agrega aquí las demás validaciones necesarias
+        ]);
+
+        // Cargar los datos existentes del modelo correspondiente
+        $licencia = Licencias::findOrFail($id);
+
+        // Actualizar los datos del modelo con los datos de la solicitud
+        $licencia->comentario_trabajo_realizar = $request->input('comentario_trabajo_realizar');
+        $licencia->comentario_especifico = $request->input('comentario_especifico');
+        // Actualiza aquí los demás campos necesarios
+
+        // Guardar los cambios en la base de datos
+        $licencia->save();
+
+        // Redireccionar a la página de detalles o cualquier otra página después de la actualización
+        return redirect()->route('status', $licencia->id)->with('success', 'LICENCIA ACTUALIZADA CORRECTAMENTE');
+    }
+
+
+    // Si el usuario quiere cerrar una licencia, pero no esta dado de alta como jefe de turno
     public function update(Request $request, $id)
     {
         $licencia = Licencias::findOrFail($id);
         if (!$this->userIsJefeDeTurno()) {
-            return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA LIBERAR LICENCIAS');
-        }
+            return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA CERRAR LICENCIAS');
+        }   //mostrara el siguiente mensaje
 
         $request->validate([
             'estado' => 'required|in:NO LIBERADO,LIBERADO',
         ]);
 
         $licencia->status = $request->estado;
-
+        //validaciones correspondientes
         $licencia->usuario_que_libero_id = Auth::id();
         $jefeDeTurno = JefeDeTurno::where('rpe', Auth::user()->rpe)->first();
         $licencia->quien_libero = $jefeDeTurno->nombre;
 
         $licencia->save();
 
-        return redirect()->route('status')->with('success', 'LICENCIA LIBERADA CORRECTAMENTE');
-    }
+        return redirect()->route('status')->with('success', 'LICENCIA CERRADA CORRECTAMENTE');
+    }   // si el usuario es jefe de turno podra cerrar la licencia
+    // mostrara el anterior mensaje
 }

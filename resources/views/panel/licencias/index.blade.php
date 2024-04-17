@@ -35,6 +35,7 @@
                     </ul>
                 </div>
             @endif
+            {{-- formulario  --}}
             <form id="myForm" class="row g-3" method="POST" action="{{ route('licencias') }}">
                 @csrf
                 <div class="col-md-77">
@@ -81,7 +82,7 @@
                             readonly>
                     </div>
                 @endif
-
+                {{-- se activan comando de seguridad para que solo el personal dado de alta como jefe de turno pueda emitir licencias --}}
                 <div class="col-md-4">
                     <legend for="SeConcede" class="form-label">SE CONCEDE A</legend>
                     <select class="form-select" id="SeConcede" name="empleado_id" required>
@@ -112,18 +113,82 @@
                 </div>
                 <br>
                 <div class="col-md-6">
-                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR</legend>
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [1]</legend>
                     <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
-                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar"
-                        oninput="this.value = this.value.toUpperCase()" required>
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
+                        required>
                 </div>
                 <br>
                 <div class="col-md-80">
-                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS</legend>
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [1]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput="this.value = this.value.toUpperCase()"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                </div>
+                <div class="col-md-6">
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [2]</legend>
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [2]</legend>
+                    <input type="text" maxlength="255" class="form-control"
+                        placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                </div>
+                <div class="col-md-6">
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [3]</legend>
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [3]</legend>
+                    <input type="text" maxlength="255" class="form-control"
+                        placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                </div>
+                <div class="col-md-6">
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [4]</legend>
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [4]</legend>
+                    <input type="text" maxlength="255" class="form-control"
+                        placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                </div>
+                <div class="col-md-6">
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [5]</legend>
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [5]</legend>
+                    <input type="text" maxlength="255" class="form-control"
+                        placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                </div>
+                <div class="col-md-6">
+                    <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [6]</legend>
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                        placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-6">
+                    <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [6]</legend>
+                    <input type="text" maxlength="255" class="form-control"
+                        placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
+                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="container">
                     <br>
@@ -235,7 +300,7 @@
                             <ul>
                                 <li>
                                     <label for="Otros">OTROS:</label>
-                                    <input type="text" id="Otros" oninput="this.value = this.value.toUpperCase()"
+                                    <input type="text" id="Otros" oninput="validarInput(this)"
                                         name="maniobrar[]">
                                 </li>
                             </ul>
@@ -286,13 +351,15 @@
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox23" name="asegurar[]" value="MECÁNICAMENTE">
-                                    <label for="checkbox23">-MECÁNICAMENTE</label>
+                                    <input type="checkbox" id="checkbox23" name="asegurar[]"
+                                        value="AISLAR-MECÁNICAMENTE">
+                                    <label for="checkbox23">MECÁNICAMENTE</label>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox24" name="asegurar[]" value="ELÉCTRICAMENTE">
+                                    <input type="checkbox" id="checkbox24" name="asegurar[]"
+                                        value="AISLAR-ELÉCTRICAMENTE">
                                     <label for="checkbox24">-ELÉCTRICAMENTE</label>
                                 </li>
                             </ul>
@@ -319,8 +386,7 @@
                             <ul>
                                 <li>
                                     <label for="Otros3">OTROS:</label>
-                                    <input type="text" id="Otros3" oninput="this.value = this.value.toUpperCase()"
-                                        name="asegurar[]">
+                                    <input type="text" id="Otros3" oninput="validarInput(this)" name="asegurar[]">
                                 </li>
                             </ul>
                         </div>
@@ -334,13 +400,15 @@
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox27" name="bloquear[]" value="-BRIDAS">
+                                    <input type="checkbox" id="checkbox27" name="bloquear[]"
+                                        value="MECANICAMENTE-BRIDAS">
                                     <label for="checkbox27">-BRIDAS</label>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox28" name="bloquear[]" value="CANDADOS">
+                                    <input type="checkbox" id="checkbox28" name="bloquear[]"
+                                        value="MECANICAMENTE-CANDADOS">
                                     <label for="checkbox28">-CANDADOS</label>
                                 </li>
                             </ul>
@@ -370,19 +438,22 @@
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox33" name="bloquear[]" value="MECÁNICAS">
+                                    <input type="checkbox" id="checkbox33" name="bloquear[]"
+                                        value="PROTECCIONES-MECÁNICAS">
                                     <label for="checkbox33">-MECÁNICAS</label>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox34" name="bloquear[]" value="ELÉCTRICAS">
+                                    <input type="checkbox" id="checkbox34" name="bloquear[]"
+                                        value="PROTECCIONES-ELÉCTRICAS">
                                     <label for="checkbox34">-ELÉCTRICAS</label>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <input type="checkbox" id="checkbox35" name="bloquear[]" value="DE CONTROL">
+                                    <input type="checkbox" id="checkbox35" name="bloquear[]"
+                                        value="PROTECCIONES DE CONTROL">
                                     <label for="checkbox35">-DE CONTROL</label>
                                 </li>
                             </ul>
@@ -395,8 +466,7 @@
                             <ul>
                                 <li>
                                     <label for="Otros2">OTROS:</label>
-                                    <input type="text" id="Otros2" oninput="this.value = this.value.toUpperCase()"
-                                        name="bloquear[]">
+                                    <input type="text" id="Otros2" oninput="validarInput(this)" name="bloquear[]">
                                 </li>
                             </ul>
                         </div>
@@ -417,16 +487,24 @@
     @push('scripts')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+            // comandos activos para mostrar funciones dentro del formulario
+            // numero de licencia se activan los guiones y bloqueos de caracteres y otras letras a excepcion de la u
             $(document).ready(function() {
                 $('#Numerolicencia').on('keypress', function(e) {
                     var input = document.getElementById("Numerolicencia");
-
-                    if ([2, 5].includes(input.value.length) && e.which != 8) {
-                        input.value = input.value + "-";
+                    var char = String.fromCharCode(e.which);
+                    // Verificar si el carácter es "U" mayúscula o un número
+                    if ((char === "u" || char.match(/[0-9]/)) && (input.value.length < 11 || e.which == 8)) {
+                        // Permitir el carácter
+                        if ([2, 5].includes(input.value.length) && e.which != 8) {
+                            input.value = input.value + "-";
+                        }
+                    } else {
+                        // Bloquear el carácter
+                        e.preventDefault();
                     }
-
                 });
-
+                //activa funcion el cual muestra a los empleados de acorde al departamento seleccionado
                 $('#DepartamentoSolicitante').on('change', function() {
                     var idDepa = this.value;
                     $("#SeConcede").html('');
@@ -449,7 +527,7 @@
                         }
                     });
                 });
-
+                //aplica filtro de informacion, despues de seleccionar unidad y centro de gestor que correspondan mostrara los equipos
                 $('#Unidad').on('change', function() {
                     var unidad = this.value;
                     var centro = $('#centro_gestor option:selected').val();
@@ -502,6 +580,20 @@
                     });
                 });
             });
+
+            function validarInput(input) {
+                // Convertir la entrada a mayúsculas
+                input.value = input.value.toUpperCase();
+
+                // Expresión regular para permitir solo letras mayúsculas, números, punto, coma y espacio
+                var regex = /^[A-Z0-9.,\s]+$/;
+
+                // Verificar si la entrada coincide con la expresión regular
+                if (!regex.test(input.value)) {
+                    // Si no coincide, eliminar los caracteres no válidos
+                    input.value = input.value.replace(/[^A-Z0-9.,\s]/g, '');
+                }
+            }
         </script>
     @endpush
 
