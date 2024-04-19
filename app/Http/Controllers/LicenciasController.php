@@ -55,6 +55,16 @@ class LicenciasController extends Controller
             'centro_gestor' => 'required',
             'comentario_trabajo_realizar' => 'required',
             'comentario_especifico' => 'required',
+            'comentario_trabajo_realizar1' => 'required',
+            'comentario_especifico1' => 'required',
+            'comentario_trabajo_realizar2' => 'required',
+            'comentario_especifico2' => 'required',
+            'comentario_trabajo_realizar3' => 'required',
+            'comentario_especifico3' => 'required',
+            'comentario_trabajo_realizar4' => 'required',
+            'comentario_especifico4' => 'required',
+            'comentario_trabajo_realizar5' => 'required',
+            'comentario_especifico5' => 'required',
             'energia_equipo' => 'required',
             'maniobrar' => 'required',
             'asegurar' => 'required',
@@ -67,8 +77,18 @@ class LicenciasController extends Controller
             'empleado_id' => 'El campo A QUIEN SE CONCEDE es obligatorio.',
             'equipo_id' => 'El campo EQUIPO es obligatorio.',
             'centro_gestor' => 'El campo CENTRO DE GESTOR es obligatorio.',
-            'comentario_trabajo_realizar' => 'El campo TRABAJO A REALIZAR es obligatorio.',
-            'comentario_especifico' => 'El campo INSTRUCCIONES es obligatorio.',
+            'comentario_trabajo_realizar' => 'El campo TRABAJO A REALIZAR [1] es obligatorio.',
+            'comentario_especifico' => 'El campo INSTRUCCIONES [1] es obligatorio.',
+            'comentario_trabajo_realizar1' => 'El campo TRABAJO A REALIZAR [2] es obligatorio.',
+            'comentario_especifico1' => 'El campo INSTRUCCIONES [2] es obligatorio.',
+            'comentario_trabajo_realizar2' => 'El campo TRABAJO A REALIZAR [3] es obligatorio.',
+            'comentario_especifico2' => 'El campo INSTRUCCIONES [3] es obligatorio.',
+            'comentario_trabajo_realizar3' => 'El campo TRABAJO A REALIZAR [4] es obligatorio.',
+            'comentario_especifico3' => 'El campo INSTRUCCIONES [4] es obligatorio.',
+            'comentario_trabajo_realizar4' => 'El campo TRABAJO A REALIZAR [5] es obligatorio.',
+            'comentario_especifico4' => 'El campo INSTRUCCIONES [5] es obligatorio.',
+            'comentario_trabajo_realizar5' => 'El campo TRABAJO A REALIZAR [6] es obligatorio.',
+            'comentario_especifico5' => 'El campo INSTRUCCIONES [6] es obligatorio.',
             'energia_equipo' => 'El campo ENERGÍA EN EL EQUIPO es obligatorio.',
             'maniobrar' => 'El campo MANIOBRAR es obligatorio.',
             'asegurar' => 'El campo ASEGURAR es obligatorio.',
@@ -86,6 +106,16 @@ class LicenciasController extends Controller
             'centro_gestor',
             'comentario_trabajo_realizar',
             'comentario_especifico',
+            'comentario_trabajo_realizar1',
+            'comentario_especifico1',
+            'comentario_trabajo_realizar2',
+            'comentario_especifico2',
+            'comentario_trabajo_realizar3',
+            'comentario_especifico3',
+            'comentario_trabajo_realizar4',
+            'comentario_especifico4',
+            'comentario_trabajo_realizar5',
+            'comentario_especifico5',
             'energia_equipo',
             'maniobrar',
             'asegurar',
@@ -213,15 +243,11 @@ class LicenciasController extends Controller
 
         if (!$jefeDeTurno) {
             // Si el usuario actual no es un jefe de turno, redirigir con un mensaje de error
-            return redirect()->back()->with('error', 'Solo los jefes de turno pueden editar licencias.');
+            return redirect()->route('principal')->with('error', 'NO CUENTAS CON PERMISOS PARA EDITAR LICENCIAS');
         }
 
         // Validar los datos de la solicitud
-        $request->validate([
-            'comentario_trabajo_realizar' => 'required',
-            'comentario_especifico' => 'required',
-            // Agrega aquí las demás validaciones necesarias
-        ]);
+
 
         // Cargar los datos existentes del modelo correspondiente
         $licencia = Licencias::findOrFail($id);
@@ -229,6 +255,16 @@ class LicenciasController extends Controller
         // Actualizar los datos del modelo con los datos de la solicitud
         $licencia->comentario_trabajo_realizar = $request->input('comentario_trabajo_realizar');
         $licencia->comentario_especifico = $request->input('comentario_especifico');
+        $licencia->comentario_trabajo_realizar1 = $request->input('comentario_trabajo_realizar1');
+        $licencia->comentario_especifico1 = $request->input('comentario_especifico1');
+        $licencia->comentario_trabajo_realizar2 = $request->input('comentario_trabajo_realizar2');
+        $licencia->comentario_especifico2 = $request->input('comentario_especifico2');
+        $licencia->comentario_trabajo_realizar3 = $request->input('comentario_trabajo_realizar3');
+        $licencia->comentario_especifico3 = $request->input('comentario_especifico3');
+        $licencia->comentario_trabajo_realizar4 = $request->input('comentario_trabajo_realizar4');
+        $licencia->comentario_especifico4 = $request->input('comentario_especifico4');
+        $licencia->comentario_trabajo_realizar5 = $request->input('comentario_trabajo_realizar5');
+        $licencia->comentario_especifico5 = $request->input('comentario_especifico5');
         // Actualiza aquí los demás campos necesarios
 
         // Guardar los cambios en la base de datos
@@ -237,6 +273,7 @@ class LicenciasController extends Controller
         // Redireccionar a la página de detalles o cualquier otra página después de la actualización
         return redirect()->route('status', $licencia->id)->with('success', 'LICENCIA ACTUALIZADA CORRECTAMENTE');
     }
+
 
 
     // Si el usuario quiere cerrar una licencia, pero no esta dado de alta como jefe de turno

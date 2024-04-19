@@ -1,0 +1,81 @@
+body {
+    margin: auto;
+    padding: 30px;
+    margin-top: -15px;
+}
+
+input[type=text],
+select,
+p {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
+label {
+    font-weight: 600;
+}
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: medium;
+    font-weight: 800;
+}
+
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    margin: auto;
+    margin-top: 3px;
+    font-size: small;
+
+}
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: xx-small;
+
+}
+.contenedor {
+    position: relative;
+    /* Establece la posición relativa para el contenedor */
+    width: 180px;
+    /* Ancho del contenedor */
+    height: 30px;
+}
+
+.imagen {
+    position: absolute;
+    /* Establece la posición absoluta para la imagen */
+    top: 0;
+    /* Posiciona la imagen en la parte superior del contenedor */
+    left: 0;
+    /* Posiciona la imagen en la parte izquierda del contenedor */
+    width: 230px;
+    /* Ancho de la imagen */
+    height: 50px;
+    /* Altura de la imagen */
+}

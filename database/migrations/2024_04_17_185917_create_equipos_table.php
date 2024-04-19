@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('denominacion')->nullable(false)->unique();
+            $table->string('denominacion')->nullable(false);
             $table->string('centro_gestor')->nullable(false);
             $table->string('unidad')->nullable();
             $table->timestamps();

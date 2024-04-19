@@ -42,10 +42,30 @@
         <label>
             {{ $licencia->Departamento->nombre }} </label>
     </p>
-    <p> EQUIPO: <label> {{ $licencia->equipo->denominacion }} </label> &nbsp;&nbsp;&nbsp;&nbsp; TRABAJO A REALIZAR:
-        <label> {{ $licencia->comentario_trabajo_realizar }} </label>
+    <p> EQUIPO: <label> {{ $licencia->equipo->denominacion }} </label> &nbsp;&nbsp;&nbsp;&nbsp; TRABAJO A REALIZAR [1]:
+        <label> {{ $licencia->comentario_trabajo_realizar }} </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [1]: <label> {{ $licencia->comentario_especifico }} </label>
     </p>
-    <p> INSTRUCCIONES ESPECIFICAS: <label> {{ $licencia->comentario_especifico }} </label></p>
+    <p> TRABAJO A REALIZAR [2]: <label> {{ $licencia->comentario_trabajo_realizar1 }}
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [2]: <label> {{ $licencia->comentario_especifico1 }} </label>
+    </p>
+    <p> TRABAJO A REALIZAR [3]: <label> {{ $licencia->comentario_trabajo_realizar2 }}
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [3]: <label> {{ $licencia->comentario_especifico2 }} </label>
+    </p>
+    <p> TRABAJO A REALIZAR [4]: <label> {{ $licencia->comentario_trabajo_realizar3 }}
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [4]: <label> {{ $licencia->comentario_especifico3 }} </label>
+    </p>
+    <p> TRABAJO A REALIZAR [5]: <label> {{ $licencia->comentario_trabajo_realizar4 }}
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [5]: <label> {{ $licencia->comentario_especifico4 }} </label>
+    </p>
+    <p> TRABAJO A REALIZAR [6]: <label> {{ $licencia->comentario_trabajo_realizar5 }}
+        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        INSTRUCCIONES ESPECIFICAS [6]: <label> {{ $licencia->comentario_especifico5 }} </label>
+    </p>
     <br>
     <h2> <label> MEDIDAS ESPECIFICAS DE SEGURIDAD PARA LIBRAR EQUIPOS "CERO ENERGÍA" </label></h2>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p> ENERGÍA EN EL EQUIPO: <label> {{ $licencia->energia_equipo }}

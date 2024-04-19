@@ -17,7 +17,8 @@ return new class extends Migration
             $table->enum('tipo_licencia', ['LICENCIA EN VIVO', 'LICENCIA EN MUERTO', 'LICENCIA ESPECIAL']);
 
             $table->string('numero_licencia', 11)->unique()->nullable(false);
-            $table->integer('unidad');
+            $table->string('unidad')->nullable(false)->default('U0')->check('unidad IN ("U0", "U1", "U2", "U3")');
+
 
             $table->foreign('jefe_de_turno_id')->references('id')->on('jefes_de_turno');
             $table->unsignedBigInteger('jefe_de_turno_id');
@@ -38,6 +39,17 @@ return new class extends Migration
 
             $table->string('comentario_trabajo_realizar')->nullable(false);
             $table->string('comentario_especifico')->nullable(false);
+            $table->string('comentario_trabajo_realizar1')->nullable(false);
+            $table->string('comentario_especifico1')->nullable(false);
+            $table->string('comentario_trabajo_realizar2')->nullable(false);
+            $table->string('comentario_especifico2')->nullable(false);
+            $table->string('comentario_trabajo_realizar3')->nullable(false);
+            $table->string('comentario_especifico3')->nullable(false);
+            $table->string('comentario_trabajo_realizar4')->nullable(false);
+            $table->string('comentario_especifico4')->nullable(false);
+            $table->string('comentario_trabajo_realizar5')->nullable(false);
+            $table->string('comentario_especifico5')->nullable(false);
+
             $table->string('energia_equipo')->nullable(false);
 
             $table->string('maniobrar')->nullable(false);

@@ -102,7 +102,7 @@
                         <option value="U3">U3</option>
                     </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-80">
                     <legend for="Equipo" class="form-label">EQUIPO</legend>
                     <select class="form-select" id="Equipo" name="equipo_id" required>
                         <option selected disabled value="">Seleccione...</option>
@@ -119,15 +119,15 @@
                         required>
                 </div>
                 <br>
-                <div class="col-md-80">
+                <div class="col-md-6">
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [1]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico" id="Instrucciones1" oninput= "validarInput(this)" required>
                 </div>
                 <div class="col-md-6">
                     <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [2]</legend>
-                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar1"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
                 </div>
@@ -136,11 +136,11 @@
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [2]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico1" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="col-md-6">
                     <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [3]</legend>
-                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar2"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
                 </div>
@@ -149,11 +149,11 @@
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [3]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico2" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="col-md-6">
                     <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [4]</legend>
-                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar3"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
                 </div>
@@ -162,11 +162,11 @@
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [4]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico3" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="col-md-6">
                     <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [5]</legend>
-                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar4"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
                 </div>
@@ -175,11 +175,11 @@
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [5]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico4" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="col-md-6">
                     <legend for="TrabajoRealizar" class="form-label">TRABAJO A REALIZAR [6]</legend>
-                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar"
+                    <input type="text" maxlength="255" class="form-control" name="comentario_trabajo_realizar5"
                         placeholder="Escribir el trabajo a realizar" id="TrabajoRealizar" oninput="validarInput(this)"
                         required>
                 </div>
@@ -188,7 +188,7 @@
                     <legend for="Instrucciones" class="form-label">INSTRUCCIONES ESPECIFICAS [6]</legend>
                     <input type="text" maxlength="255" class="form-control"
                         placeholder="Escribir detalladamente las instrucciones del trabajo a realizar"
-                        name="comentario_especifico" id=" Instrucciones" oninput= "validarInput(this)" required>
+                        name="comentario_especifico5" id=" Instrucciones" oninput= "validarInput(this)" required>
                 </div>
                 <div class="container">
                     <br>
